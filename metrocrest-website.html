@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Metrocrest Dry Cleaners — Professional dry cleaning, alterations and shoe repair in Addison, TX since 1999. Drive-thru available. Call (972) 243-1982.">
+<title>Metrocrest Dry Cleaners | Addison, TX Since 1999</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+:root{
+  --bg:#f8f6f1;--white:#ffffff;--off:#f2efe8;--card:#ffffff;
+  --navy:#0d1f35;--navy2:#162840;--navy3:#1e3550;
+  --gold:#c9963a;--gold2:#e8b44e;--gold-dim:rgba(201,150,58,0.1);
+  --text:#0d1f35;--text2:#4a5e6e;--text3:#8fa3b1;
+  --border:rgba(13,31,53,0.08);--border2:rgba(201,150,58,0.15);
+  --font-d:'Playfair Display',serif;
+  --font-b:'Outfit',sans-serif;
+  --r:10px;--r2:18px;--r3:28px;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-b);overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+
+/* SCROLL BAR */
+#sb{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));z-index:9999;width:0%;}
+
+/* CANVAS */
+#bgc{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.35;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 5vw;height:72px;display:flex;align-items:center;justify-content:space-between;transition:all .4s;}
+nav.scrolled{background:rgba(248,246,241,0.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);box-shadow:0 2px 20px rgba(13,31,53,0.06);}
+.nav-logo{display:flex;align-items:center;gap:12px;}
+.nav-logo-mark{width:40px;height:40px;background:var(--navy);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.nav-brand{font-family:var(--font-d);font-size:18px;font-weight:700;color:var(--navy);line-height:1.1;}
+.nav-brand-sub{font-size:10px;font-weight:400;color:var(--text3);letter-spacing:.5px;font-family:var(--font-b);}
+.nav-links{display:flex;gap:32px;align-items:center;}
+.nav-links a{font-size:13px;font-weight:500;color:var(--text2);transition:color .2s;letter-spacing:.2px;}
+.nav-links a:hover{color:var(--gold);}
+.nav-cta{background:var(--navy);color:#fff;border:none;padding:11px 24px;border-radius:100px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--font-b);transition:all .3s;text-decoration:none;letter-spacing:.2px;position:relative;overflow:hidden;}
+.nav-cta::after{content:'';position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s;z-index:-1;}
+.nav-cta:hover{color:var(--navy);}
+.nav-cta:hover::after{transform:scaleX(1);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{width:24px;height:2px;background:var(--navy);border-radius:1px;transition:all .3s;}
+.mob-menu{display:none;position:fixed;top:72px;left:0;right:0;background:rgba(248,246,241,0.98);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:20px 5vw 24px;flex-direction:column;gap:0;z-index:99;}
+.mob-menu.open{display:flex;}
+.mob-menu a{padding:14px 0;font-size:15px;font-weight:500;color:var(--text);border-bottom:1px solid var(--border);transition:color .2s;}
+.mob-menu a:last-child{border-bottom:none;}
+.mob-menu a:hover{color:var(--gold);}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:100px 5vw 80px;gap:80px;position:relative;overflow:hidden;}
+.hero-left-bg{position:absolute;top:0;left:0;width:55%;height:100%;background:var(--navy);z-index:0;clip-path:polygon(0 0,90% 0,100% 100%,0 100%);}
+.hero-pattern{position:absolute;top:0;left:0;width:55%;height:100%;z-index:1;opacity:.04;background-image:repeating-linear-gradient(45deg,#fff 0,#fff 1px,transparent 0,transparent 50%);background-size:20px 20px;}
+.hero-left{position:relative;z-index:2;padding-right:20px;}
+.hero-year{display:inline-flex;align-items:center;gap:10px;margin-bottom:24px;animation:fadeUp .7s .2s both;}
+.hy-line{width:32px;height:1px;background:var(--gold);}
+.hy-txt{font-size:11px;font-weight:500;letter-spacing:3px;color:rgba(255,255,255,0.5);text-transform:uppercase;}
+.hero-h{font-family:var(--font-d);font-size:clamp(46px,5.5vw,80px);font-weight:700;line-height:1;color:#fff;margin-bottom:20px;letter-spacing:-.5px;animation:fadeUp .7s .35s both;}
+.hero-h em{font-style:italic;color:var(--gold);display:block;}
+.hero-sub{font-size:16px;font-weight:300;color:rgba(255,255,255,0.55);line-height:1.8;max-width:400px;margin-bottom:36px;animation:fadeUp .7s .5s both;}
+.hero-sub strong{color:rgba(255,255,255,0.85);font-weight:500;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px;animation:fadeUp .7s .65s both;}
+.btn-gold{background:var(--gold);color:var(--navy);border:none;padding:15px 30px;border-radius:100px;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font-b);transition:all .3s;display:inline-flex;align-items:center;gap:8px;text-decoration:none;box-shadow:0 6px 24px rgba(201,150,58,0.3);position:relative;overflow:hidden;}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 10px 32px rgba(201,150,58,0.45);}
+.btn-light{background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.2);padding:14px 30px;border-radius:100px;font-size:13px;font-weight:500;cursor:pointer;font-family:var(--font-b);transition:all .3s;text-decoration:none;}
+.btn-light:hover{background:rgba(255,255,255,0.18);border-color:rgba(255,255,255,0.35);}
+.hero-trust{display:flex;gap:24px;flex-wrap:wrap;animation:fadeUp .7s .8s both;}
+.trust-item{display:flex;align-items:center;gap:8px;}
+.ti-ic{font-size:16px;}
+.ti-txt{font-size:12px;color:rgba(255,255,255,0.5);font-weight:500;}
+
+/* HERO RIGHT */
+.hero-right{position:relative;z-index:2;}
+.hero-card{background:var(--white);border-radius:var(--r3);overflow:hidden;box-shadow:0 24px 64px rgba(13,31,53,0.2);border:1px solid var(--border);}
+.hc-top{background:linear-gradient(135deg,var(--navy),var(--navy2));padding:24px;position:relative;overflow:hidden;}
+.hc-top::before{content:'';position:absolute;top:-30px;right:-30px;width:120px;height:120px;background:radial-gradient(circle,rgba(201,150,58,0.15),transparent 70%);border-radius:50%;}
+.hc-year{font-family:var(--font-d);font-size:48px;font-weight:700;color:var(--gold);line-height:1;letter-spacing:-2px;}
+.hc-since{font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
+.hc-name{font-family:var(--font-d);font-size:22px;font-weight:700;color:#fff;margin-top:12px;}
+.hc-addr{font-size:12px;color:rgba(255,255,255,0.45);margin-top:4px;}
+.hc-body{padding:20px;}
+.hc-row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid var(--border);}
+.hc-row:last-child{border-bottom:none;}
+.hc-key{font-size:12px;color:var(--text3);font-weight:500;}
+.hc-val{font-size:13px;font-weight:700;color:var(--text);}
+.hc-badge{background:var(--gold-dim);border:1px solid var(--border2);border-radius:100px;padding:3px 10px;font-size:10px;font-weight:700;color:var(--gold);}
+.floating-tag{position:absolute;top:24px;right:-8px;background:var(--gold);border-radius:var(--r2) 0 0 var(--r2);padding:10px 16px;display:flex;align-items:center;gap:8px;box-shadow:0 4px 16px rgba(201,150,58,0.3);animation:tag-float 3s ease-in-out infinite;}
+@keyframes tag-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.ft-ic{font-size:16px;}
+.ft-txt{font-size:12px;font-weight:700;color:var(--navy);}
+
+/* MARQUEE */
+.mw{background:var(--navy);padding:13px 0;overflow:hidden;position:relative;z-index:1;}
+.mt{display:flex;white-space:nowrap;animation:mq 35s linear infinite;}
+.mi{font-size:11px;font-weight:600;letter-spacing:2px;color:rgba(255,255,255,0.5);padding:0 24px;text-transform:uppercase;font-family:var(--font-b);}
+.mi.hi{color:var(--gold);}
+.ms{color:rgba(201,150,58,0.3);}
+@keyframes mq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* SECTIONS */
+.sf{padding:90px 0;position:relative;z-index:1;}
+.si{max-width:1160px;margin:0 auto;padding:0 5vw;}
+.s{padding:90px 5vw;max-width:1160px;margin:0 auto;position:relative;z-index:1;}
+.ey{font-size:10px;font-weight:600;letter-spacing:3px;color:var(--gold);text-transform:uppercase;display:block;margin-bottom:12px;}
+.h2{font-family:var(--font-d);font-size:clamp(36px,4.5vw,60px);font-weight:700;line-height:1.05;margin-bottom:16px;color:var(--navy);letter-spacing:-.5px;}
+.h2 em{font-style:italic;color:var(--gold);}
+.blg{font-size:15px;font-weight:400;color:var(--text2);line-height:1.8;}
+.gold-div{width:40px;height:2px;background:var(--gold);margin:16px 0 20px;}
+.section-cta{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap;}
+
+/* SERVICES */
+.svc-bg{background:var(--navy);}
+.svc-ey{color:rgba(201,150,58,0.7);}
+.svc-h{color:#fff;}
+.svc-blg{color:rgba(255,255,255,0.45);}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:48px;}
+.sc{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:var(--r2);padding:30px 24px;transition:all .35s;cursor:default;position:relative;overflow:hidden;}
+.sc::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,150,58,0.05),transparent 60%);opacity:0;transition:opacity .3s;}
+.sc:hover::before{opacity:1;}
+.sc:hover{background:rgba(255,255,255,0.07);border-color:rgba(201,150,58,0.2);transform:translateY(-5px);}
+.sc-ic{width:52px;height:52px;border-radius:14px;background:rgba(201,150,58,0.1);border:1px solid rgba(201,150,58,0.2);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:18px;transition:all .3s;}
+.sc:hover .sc-ic{background:var(--gold);transform:scale(1.05) rotate(-5deg);}
+.sc-t{font-family:var(--font-d);font-size:22px;font-weight:700;color:#fff;margin-bottom:10px;}
+.sc-d{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.7;}
+.sc-items{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
+.sc-item{background:rgba(201,150,58,0.08);border:1px solid rgba(201,150,58,0.15);border-radius:100px;padding:4px 10px;font-size:10px;font-weight:600;color:rgba(201,150,58,0.7);letter-spacing:.3px;}
+
+/* WHY */
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:48px;}
+.why-left{}
+.why-items{display:flex;flex-direction:column;gap:0;}
+.wi{display:flex;gap:16px;padding:20px 16px;border-bottom:1px solid var(--border);transition:all .25s;cursor:default;border-left:3px solid transparent;}
+.wi:hover{background:var(--off);border-left-color:var(--gold);padding-left:20px;}
+.wi:last-child{border-bottom:none;}
+.wi-ic{width:44px;height:44px;border-radius:12px;background:var(--gold-dim);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;transition:all .3s;}
+.wi:hover .wi-ic{background:var(--gold);}
+.wi-t{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px;}
+.wi-d{font-size:13px;color:var(--text2);line-height:1.6;}
+.why-visual{background:var(--navy);border-radius:var(--r3);overflow:hidden;position:relative;}
+.wv-top{padding:32px;background:linear-gradient(160deg,var(--navy2),var(--navy3));}
+.wv-title{font-family:var(--font-d);font-size:28px;font-weight:700;color:#fff;margin-bottom:4px;}
+.wv-sub{font-size:13px;color:rgba(255,255,255,0.4);}
+.wv-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.05);}
+.wv-stat{padding:20px;background:var(--navy);}
+.wvs-val{font-family:var(--font-d);font-size:32px;font-weight:700;color:var(--gold);line-height:1;}
+.wvs-lbl{font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:1px;text-transform:uppercase;margin-top:4px;}
+.wv-cta{padding:20px 24px;background:var(--gold);display:flex;align-items:center;justify-content:space-between;cursor:pointer;text-decoration:none;transition:background .2s;}
+.wv-cta:hover{background:var(--gold2);}
+.wvc-txt{font-size:14px;font-weight:700;color:var(--navy);}
+.wvc-arr{font-size:20px;color:var(--navy);}
+
+/* HOURS */
+.hours-bg{background:var(--off);}
+.hours-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;margin-top:48px;}
+.hours-table{display:flex;flex-direction:column;gap:0;}
+.hr{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--border);transition:background .2s;}
+.hr:last-child{border-bottom:none;}
+.hr:hover{background:var(--white);}
+.hr.today{background:var(--white);border-left:3px solid var(--gold);}
+.hr-day{font-size:14px;font-weight:600;color:var(--navy);}
+.hr-time{font-size:14px;font-weight:700;color:var(--gold);}
+.hr-closed{color:var(--text3);}
+.hours-info{display:flex;flex-direction:column;gap:12px;}
+.hi-card{background:var(--white);border-radius:var(--r2);padding:20px;border:1px solid var(--border);display:flex;gap:14px;align-items:flex-start;transition:all .3s;}
+.hi-card:hover{border-color:var(--border2);box-shadow:0 8px 24px rgba(13,31,53,0.06);}
+.hi-ic{width:42px;height:42px;border-radius:12px;background:var(--gold-dim);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.hi-t{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:3px;}
+.hi-d{font-size:13px;color:var(--text2);line-height:1.5;}
+.app-promo{background:var(--navy);border-radius:var(--r2);padding:24px;position:relative;overflow:hidden;}
+.app-promo::before{content:'';position:absolute;top:-20px;right:-20px;width:100px;height:100px;background:radial-gradient(circle,rgba(201,150,58,0.1),transparent 70%);border-radius:50%;}
+.ap-title{font-family:var(--font-d);font-size:20px;font-weight:700;color:#fff;margin-bottom:6px;}
+.ap-sub{font-size:13px;color:rgba(255,255,255,0.45);margin-bottom:16px;line-height:1.6;}
+.ap-btn{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--navy);padding:11px 20px;border-radius:100px;font-size:12px;font-weight:700;cursor:pointer;text-decoration:none;transition:all .2s;font-family:var(--font-b);}
+.ap-btn:hover{background:var(--gold2);transform:translateY(-1px);}
+
+/* REVIEWS */
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:48px;}
+.rc{background:var(--white);border-radius:var(--r2);padding:26px;border:1px solid var(--border);transition:all .3s;position:relative;overflow:hidden;}
+.rc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));transform:scaleX(0);transition:transform .4s;}
+.rc:hover::before{transform:scaleX(1);}
+.rc:hover{box-shadow:0 12px 36px rgba(13,31,53,0.08);transform:translateY(-4px);}
+.rc-stars{color:var(--gold);font-size:13px;letter-spacing:2px;margin-bottom:12px;}
+.rc-q{font-family:var(--font-d);font-size:52px;color:var(--gold);opacity:.12;line-height:.8;margin-bottom:10px;}
+.rc-txt{font-size:14px;color:var(--text2);line-height:1.7;font-style:italic;margin-bottom:16px;}
+.rc-txt strong{color:var(--navy);font-style:normal;font-weight:700;}
+.rc-name{font-size:12px;font-weight:700;color:var(--navy);letter-spacing:.3px;}
+.rc-role{font-size:11px;color:var(--text3);margin-top:2px;}
+
+/* CTA BAND */
+.cta-band{background:var(--navy);padding:80px 5vw;position:relative;overflow:hidden;}
+.cta-band::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(201,150,58,0.04) 1px,transparent 1px);background-size:28px 28px;}
+.cta-orb{position:absolute;top:50%;right:8%;transform:translateY(-50%);width:350px;height:350px;background:radial-gradient(circle,rgba(201,150,58,0.07),transparent 70%);border-radius:50%;pointer-events:none;}
+.cta-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center;position:relative;z-index:1;}
+.cta-title{font-family:var(--font-d);font-size:clamp(34px,4vw,52px);font-weight:700;line-height:1.1;color:#fff;}
+.cta-title em{font-style:italic;color:var(--gold);}
+.cta-sub{font-size:15px;color:rgba(255,255,255,0.45);margin-top:10px;line-height:1.7;}
+.cta-btns{display:flex;flex-direction:column;gap:10px;flex-shrink:0;}
+.btn-navy{background:transparent;color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.15);padding:13px 28px;border-radius:100px;font-size:13px;font-weight:500;cursor:pointer;font-family:var(--font-b);transition:all .3s;text-decoration:none;text-align:center;}
+.btn-navy:hover{border-color:rgba(255,255,255,0.3);color:#fff;}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;margin-top:48px;}
+.cf{background:var(--white);border-radius:var(--r3);padding:36px;border:1px solid var(--border);box-shadow:0 8px 32px rgba(13,31,53,0.06);}
+.flbl{font-size:10px;font-weight:600;letter-spacing:1.5px;color:var(--text3);text-transform:uppercase;margin-bottom:6px;display:block;}
+.fin{width:100%;padding:13px 16px;border:2px solid var(--border);border-radius:var(--r);font-size:14px;color:var(--text);background:var(--bg);outline:none;font-family:var(--font-b);transition:border-color .2s;margin-bottom:14px;}
+.fin:focus{border-color:var(--gold);background:var(--white);}
+.fin::placeholder{color:var(--text3);}
+.fsel{width:100%;padding:13px 16px;border:2px solid var(--border);border-radius:var(--r);font-size:14px;color:var(--text);background:var(--bg);outline:none;font-family:var(--font-b);margin-bottom:14px;}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
+.fgrid .fin{margin-bottom:0;}
+.fsub{width:100%;padding:15px;background:var(--navy);border:none;border-radius:var(--r);color:#fff;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font-b);transition:all .3s;margin-top:6px;letter-spacing:.3px;position:relative;overflow:hidden;}
+.fsub::after{content:'';position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s;z-index:0;}
+.fsub span{position:relative;z-index:1;transition:color .3s;}
+.fsub:hover span{color:var(--navy);}
+.fsub:hover::after{transform:scaleX(1);}
+.fsucc{background:var(--gold-dim);border:1px solid var(--border2);border-radius:var(--r);padding:18px;text-align:center;display:none;margin-top:12px;}
+.fsucc.show{display:block;}
+.fsucc-t{font-family:var(--font-d);font-size:18px;font-weight:700;color:var(--gold);margin-bottom:4px;}
+.ci-list{display:flex;flex-direction:column;gap:0;}
+.ci{display:flex;gap:14px;padding:18px 0;border-bottom:1px solid var(--border);}
+.ci:last-child{border-bottom:none;}
+.ci-ic{width:44px;height:44px;border-radius:12px;background:var(--gold-dim);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.ci-lbl{font-size:10px;letter-spacing:1px;color:var(--text3);text-transform:uppercase;font-weight:600;}
+.ci-val{font-size:15px;font-weight:600;color:var(--navy);margin-top:3px;}
+.ci-val a{color:var(--gold);transition:opacity .2s;}
+.ci-val a:hover{opacity:.75;}
+
+/* FOOTER */
+footer{background:var(--navy);padding:56px 5vw 32px;}
+.fi{max-width:1160px;margin:0 auto;}
+.ft{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:48px;}
+.fb-name{font-family:var(--font-d);font-size:22px;font-weight:700;color:#fff;margin-bottom:6px;}
+.fb-name span{color:var(--gold);}
+.fb-est{font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;}
+.fb-desc{font-size:13px;color:rgba(255,255,255,0.3);line-height:1.7;}
+.fc-t{font-size:10px;font-weight:600;letter-spacing:2px;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:16px;}
+.fc-links{display:flex;flex-direction:column;gap:9px;}
+.fc-links a{font-size:13px;color:rgba(255,255,255,0.4);transition:color .2s;}
+.fc-links a:hover{color:var(--gold);}
+.fb-bot{border-top:1px solid rgba(255,255,255,0.07);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.fb-copy{font-size:11px;color:rgba(255,255,255,0.2);}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* RIPPLE */
+.rip{position:absolute;border-radius:50%;background:rgba(255,255,255,0.2);transform:scale(0);animation:rip-go .7s linear;pointer-events:none;}
+@keyframes rip-go{to{transform:scale(4);opacity:0}}
+
+/* CONFETTI */
+.conf{position:fixed;pointer-events:none;z-index:9999;animation:cf 1.4s ease-out forwards;}
+@keyframes cf{0%{opacity:1;transform:translateY(0) rotate(0)}100%{opacity:0;transform:translateY(700px) rotate(720deg)}}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:768px){
+  .hero{grid-template-columns:1fr;padding-top:90px;gap:40px;}
+  .hero-left-bg{width:100%;clip-path:none;}
+  .hero-left{padding:40px 0 0;}
+  .hero-right{display:none;}
+  .svc-grid,.rev-grid{grid-template-columns:1fr;}
+  .why-grid,.hours-grid,.contact-grid{grid-template-columns:1fr;}
+  .cta-inner{grid-template-columns:1fr;}
+  .ft{grid-template-columns:1fr;}
+  .fb-bot{flex-direction:column;text-align:center;}
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .fgrid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<canvas id="bgc"></canvas>
+<div id="sb"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">
+    <div class="nav-logo-mark">👔</div>
+    <div>
+      <div class="nav-brand">Metrocrest Cleaners</div>
+      <div class="nav-brand-sub">Addison, TX · Since 1999</div>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#hours">Hours</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="tel:9722431982" class="nav-cta">📞 Call Now</a>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mob-menu">
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#hours" onclick="toggleMenu()">Hours</a>
+  <a href="#reviews" onclick="toggleMenu()">Reviews</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+  <a href="tel:9722431982" style="color:var(--gold);">📞 (972) 243-1982</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-left">
+    <div class="hero-year"><div class="hy-line"></div><div class="hy-txt">Serving Addison Since 1999</div></div>
+    <h1 class="hero-h">
+      Cleaned.<br>
+      Pressed.<br>
+      <em>Perfected.</em>
+    </h1>
+    <p class="hero-sub">Addison's most trusted dry cleaner for over 25 years. <strong>Professional cleaning, expert alterations and shoe repair</strong> — all with the personal care your clothes deserve.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-gold">📅 Drop Off Online →</a>
+      <a href="tel:9722431982" class="btn-light">📞 (972) 243-1982</a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item"><div class="ti-ic">🚗</div><div class="ti-txt">Drive-Thru Available</div></div>
+      <div class="trust-item"><div class="ti-ic">⭐</div><div class="ti-txt">5-Star Rated</div></div>
+      <div class="trust-item"><div class="ti-ic">🏆</div><div class="ti-txt">25+ Years Experience</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="floating-tag"><div class="ft-ic">🚗</div><div class="ft-txt">Drive-Thru Available</div></div>
+    <div class="hero-card">
+      <div class="hc-top">
+        <div class="hc-year">1999</div>
+        <div class="hc-since">Established · Addison, TX</div>
+        <div class="hc-name">Metrocrest Dry Cleaners</div>
+        <div class="hc-addr">3709 Spring Valley Rd · Addison, TX 75001</div>
+      </div>
+      <div class="hc-body">
+        <div class="hc-row"><span class="hc-key">📞 Phone</span><span class="hc-val">(972) 243-1982</span></div>
+        <div class="hc-row"><span class="hc-key">🕐 Mon/Tue/Thu</span><span class="hc-val">7AM – 6PM</span></div>
+        <div class="hc-row"><span class="hc-key">🕐 Wed / Fri</span><span class="hc-val">7AM – 5PM</span></div>
+        <div class="hc-row"><span class="hc-key">🕐 Saturday</span><span class="hc-val">9AM – 3PM</span></div>
+        <div class="hc-row"><span class="hc-key">🚗 Drive-Thru</span><span class="hc-badge">Available</span></div>
+        <div class="hc-row"><span class="hc-key">⚡ Same Day</span><span class="hc-badge">Most Items</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mw">
+  <div class="mt">
+    <span class="mi hi">Dry Cleaning</span><span class="ms"> ✦ </span>
+    <span class="mi">Dress Shirts</span><span class="ms"> ✦ </span>
+    <span class="mi hi">Suit Jackets</span><span class="ms"> ✦ </span>
+    <span class="mi">Wedding Gowns</span><span class="ms"> ✦ </span>
+    <span class="mi hi">Alterations</span><span class="ms"> ✦ </span>
+    <span class="mi">Shoe Repair</span><span class="ms"> ✦ </span>
+    <span class="mi hi">Bedding & Comforters</span><span class="ms"> ✦ </span>
+    <span class="mi">Same-Day Service</span><span class="ms"> ✦ </span>
+    <span class="mi hi">Drive-Thru</span><span class="ms"> ✦ </span>
+    <span class="mi">Leather Cleaning</span><span class="ms"> ✦ </span>
+    <span class="mi hi">Dry Cleaning</span><span class="ms"> ✦ </span>
+    <span class="mi">Dress Shirts</span><span class="ms"> ✦ </span>
+    <span class="mi hi">Suit Jackets</span><span class="ms"> ✦ </span>
+    <span class="mi">Wedding Gowns</span><span class="ms"> ✦ </span>
+    <span class="mi hi">Alterations</span><span class="ms"> ✦ </span>
+    <span class="mi">Shoe Repair</span><span class="ms"> ✦ </span>
+    <span class="mi hi">Bedding & Comforters</span><span class="ms"> ✦ </span>
+    <span class="mi">Same-Day Service</span><span class="ms"> ✦ </span>
+    <span class="mi hi">Drive-Thru</span><span class="ms"> ✦ </span>
+    <span class="mi">Leather Cleaning</span><span class="ms"> ✦ </span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services" class="sf svc-bg">
+  <div class="si">
+    <span class="ey svc-ey reveal">What We Do</span>
+    <h2 class="h2 svc-h reveal" style="transition-delay:.1s;">Every Garment.<br><em>Expert Care.</em></h2>
+    <p class="blg svc-blg reveal" style="transition-delay:.15s;max-width:500px;">From your everyday work shirts to your most precious formalwear — we treat every single garment like it matters. Because to you, it does.</p>
+    <div class="svc-grid">
+      <div class="sc reveal">
+        <div class="sc-ic">👔</div>
+        <div class="sc-t">Dry Cleaning</div>
+        <div class="sc-d">Professional dry cleaning for all fabrics. We read every care label, use the right solvents, and press everything to a crisp finish you can feel.</div>
+        <div class="sc-items"><span class="sc-item">Suits</span><span class="sc-item">Dresses</span><span class="sc-item">Coats</span><span class="sc-item">Blazers</span><span class="sc-item">Formalwear</span></div>
+      </div>
+      <div class="sc reveal" style="transition-delay:.08s;">
+        <div class="sc-ic">✂️</div>
+        <div class="sc-t">Alterations & Repairs</div>
+        <div class="sc-d">Expert tailoring and repairs so your clothes fit perfectly. Hemming, taking in, letting out, zipper replacement — we do it all right here.</div>
+        <div class="sc-items"><span class="sc-item">Hemming</span><span class="sc-item">Taking In</span><span class="sc-item">Zippers</span><span class="sc-item">Patches</span></div>
+      </div>
+      <div class="sc reveal" style="transition-delay:.16s;">
+        <div class="sc-ic">👟</div>
+        <div class="sc-t">Shoe Repair</div>
+        <div class="sc-d">Bring your favorite shoes back to life. Resoling, heel repair, leather restoration and deep cleaning — because good shoes are worth saving.</div>
+        <div class="sc-items"><span class="sc-item">Resoling</span><span class="sc-item">Heel Repair</span><span class="sc-item">Leather Care</span></div>
+      </div>
+      <div class="sc reveal">
+        <div class="sc-ic">🛏️</div>
+        <div class="sc-t">Household Items</div>
+        <div class="sc-d">Comforters, duvets, drapes, tablecloths and more. Large items done right — cleaned thoroughly, dried completely, folded with care.</div>
+        <div class="sc-items"><span class="sc-item">Bedding</span><span class="sc-item">Comforters</span><span class="sc-item">Drapes</span><span class="sc-item">Linens</span></div>
+      </div>
+      <div class="sc reveal" style="transition-delay:.08s;">
+        <div class="sc-ic">👗</div>
+        <div class="sc-t">Wedding & Bridal</div>
+        <div class="sc-d">Your wedding gown is irreplaceable. We handle bridal cleaning and preservation with the care and attention it deserves — before and after the big day.</div>
+        <div class="sc-items"><span class="sc-item">Gown Cleaning</span><span class="sc-item">Preservation</span><span class="sc-item">Bridesmaid Dresses</span></div>
+      </div>
+      <div class="sc reveal" style="transition-delay:.16s;">
+        <div class="sc-ic">⚡</div>
+        <div class="sc-t">Same-Day Service</div>
+        <div class="sc-d">Last-minute event? Drop off before 9AM on weekdays and we'll have most items ready the same day. No rushing. No compromising quality.</div>
+        <div class="sc-items"><span class="sc-item">In Before 9AM</span><span class="sc-item">Ready Same Day</span><span class="sc-item">Most Items</span></div>
+      </div>
+    </div>
+    <div class="section-cta reveal">
+      <a href="#contact" class="btn-gold">📅 Schedule a Drop-Off →</a>
+      <a href="tel:9722431982" class="btn-light" style="background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.15);">📞 Call Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="about" class="s">
+  <div class="why-grid">
+    <div class="why-left">
+      <span class="ey reveal">Why Metrocrest</span>
+      <h2 class="h2 reveal" style="transition-delay:.1s;">25 Years of <em>Trust.</em><br>One Garment at a Time.</h2>
+      <div class="gold-div"></div>
+      <p class="blg reveal" style="transition-delay:.15s;margin-bottom:28px;">Wade and the Metrocrest team have been serving Addison families and businesses since 1999. Not a franchise. Not a chain. A real local business that knows your name and treats your clothes like their own.</p>
+      <div class="why-items">
+        <div class="wi reveal"><div class="wi-ic">🏆</div><div><div class="wi-t">25+ Years in Addison</div><div class="wi-d">We've cleaned thousands of garments for thousands of families. That experience shows in every single order.</div></div></div>
+        <div class="wi reveal" style="transition-delay:.07s;"><div class="wi-ic">🚗</div><div><div class="wi-t">Drive-Thru Convenience</div><div class="wi-d">Drop off and pick up without leaving your car. Because your time is as valuable as your clothes.</div></div></div>
+        <div class="wi reveal" style="transition-delay:.14s;"><div class="wi-ic">📱</div><div><div class="wi-t">Order Tracking App</div><div class="wi-d">Know exactly when your order is ready — no more calling to check. Our customer app sends you a text the second it's done.</div></div></div>
+        <div class="wi reveal" style="transition-delay:.21s;"><div class="wi-ic">❤️</div><div><div class="wi-t">Local Family Business</div><div class="wi-d">When you bring your clothes here you're supporting a real Addison family — not a national chain that doesn't know your name.</div></div></div>
+      </div>
+    </div>
+    <div class="reveal" style="transition-delay:.15s;">
+      <div class="why-visual">
+        <div class="wv-top">
+          <div class="wv-title">Metrocrest by the Numbers</div>
+          <div class="wv-sub">25 years of serving Addison, TX</div>
+        </div>
+        <div class="wv-stats">
+          <div class="wv-stat"><div class="wvs-val">25+</div><div class="wvs-lbl">Years Serving Addison</div></div>
+          <div class="wv-stat"><div class="wvs-val">5★</div><div class="wvs-lbl">Customer Rating</div></div>
+          <div class="wv-stat"><div class="wvs-val">100%</div><div class="wvs-lbl">Local & Independent</div></div>
+          <div class="wv-stat"><div class="wvs-val">1999</div><div class="wvs-lbl">Year Established</div></div>
+        </div>
+        <a href="#contact" class="wv-cta">
+          <div class="wvc-txt">Schedule Your Drop-Off Today →</div>
+          <div class="wvc-arr">→</div>
+        </a>
+      </div>
+      <div class="app-promo" style="margin-top:14px;">
+        <div class="ap-title">Track Your Order 📱</div>
+        <div class="ap-sub">Use our free customer app to place orders, track status and check your loyalty rewards — all from your phone.</div>
+        <a href="#" class="ap-btn">Download the App →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOURS -->
+<section id="hours" class="sf hours-bg">
+  <div class="si">
+    <span class="ey reveal">Hours & Location</span>
+    <h2 class="h2 reveal" style="transition-delay:.1s;">We're Here<br><em>When You Need Us.</em></h2>
+    <div class="hours-grid">
+      <div class="reveal">
+        <div class="hours-table">
+          <div class="hr" id="hr-mon"><div class="hr-day">Monday</div><div class="hr-time">7:00 AM – 6:00 PM</div></div>
+          <div class="hr" id="hr-tue"><div class="hr-day">Tuesday</div><div class="hr-time">7:00 AM – 6:00 PM</div></div>
+          <div class="hr" id="hr-wed"><div class="hr-day">Wednesday</div><div class="hr-time">7:00 AM – 5:00 PM</div></div>
+          <div class="hr" id="hr-thu"><div class="hr-day">Thursday</div><div class="hr-time">7:00 AM – 6:00 PM</div></div>
+          <div class="hr" id="hr-fri"><div class="hr-day">Friday</div><div class="hr-time">7:00 AM – 5:00 PM</div></div>
+          <div class="hr" id="hr-sat"><div class="hr-day">Saturday</div><div class="hr-time">9:00 AM – 3:00 PM</div></div>
+          <div class="hr"><div class="hr-day">Sunday</div><div class="hr-time hr-closed">Closed</div></div>
+        </div>
+        <div style="margin-top:20px;">
+          <a href="#contact" class="btn-gold" style="display:inline-flex;">📅 Schedule a Drop-Off →</a>
+        </div>
+      </div>
+      <div class="hours-info reveal" style="transition-delay:.15s;">
+        <div class="hi-card"><div class="hi-ic">📍</div><div><div class="hi-t">Our Address</div><div class="hi-d">3709 Spring Valley Rd<br>Addison, TX 75001</div></div></div>
+        <div class="hi-card"><div class="hi-ic">📞</div><div><div class="hi-t">Phone</div><div class="hi-d"><a href="tel:9722431982" style="color:var(--gold);">(972) 243-1982</a></div></div></div>
+        <div class="hi-card"><div class="hi-ic">🚗</div><div><div class="hi-t">Drive-Thru Available</div><div class="hi-d">Drop off and pick up without leaving your car — available during all business hours.</div></div></div>
+        <div class="hi-card"><div class="hi-ic">⚡</div><div><div class="hi-t">Same-Day Service</div><div class="hi-d">Drop off before 9AM on weekdays and most items will be ready the same day.</div></div></div>
+        <div class="hi-card"><div class="hi-ic">🏠</div><div><div class="hi-t">Home Pickup Available</div><div class="hi-d">We come to you. Schedule a home pickup through our customer app — no need to leave the house.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" class="s">
+  <span class="ey reveal">Customer Reviews</span>
+  <h2 class="h2 reveal" style="transition-delay:.1s;">Addison's Most <em>Trusted</em><br>Dry Cleaner.</h2>
+  <div class="rev-grid">
+    <div class="rc reveal">
+      <div class="rc-stars">★★★★★</div>
+      <div class="rc-q">"</div>
+      <div class="rc-txt">Been coming here for years and <strong>Wade and his team never disappoint.</strong> My suits always come back looking better than when I dropped them off. Wouldn't go anywhere else.</div>
+      <div class="rc-name">MICHAEL T.</div><div class="rc-role">Addison, TX · Regular Customer</div>
+    </div>
+    <div class="rc reveal" style="transition-delay:.1s;">
+      <div class="rc-stars">★★★★★</div>
+      <div class="rc-q">"</div>
+      <div class="rc-txt">The drive-thru makes everything so convenient. I drop off my whole week's dry cleaning in 2 minutes without getting out of the car. <strong>This place is a lifesaver.</strong></div>
+      <div class="rc-name">JENNIFER R.</div><div class="rc-role">Addison, TX · Weekly Customer</div>
+    </div>
+    <div class="rc reveal" style="transition-delay:.2s;">
+      <div class="rc-stars">★★★★★</div>
+      <div class="rc-q">"</div>
+      <div class="rc-txt">They cleaned my wedding dress and <strong>it looked absolutely perfect.</strong> So careful and professional. I was nervous but they treated it like their own. Truly the best in Addison.</div>
+      <div class="rc-name">SARAH M.</div><div class="rc-role">Addison, TX · Bridal Customer</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="cta-orb"></div>
+  <div class="cta-inner">
+    <div>
+      <div class="cta-title">Ready to Drop Off?<br><em>We're Ready for You.</em></div>
+      <div class="cta-sub">Schedule a drop-off online, use our drive-thru, or request a home pickup. However is easiest for you — we've got you covered.</div>
+    </div>
+    <div class="cta-btns">
+      <a href="#contact" class="btn-gold" style="justify-content:center;">📅 Schedule Drop-Off →</a>
+      <a href="tel:9722431982" class="btn-navy">📞 (972) 243-1982</a>
+      <a href="#" class="btn-navy">📱 Download Our App</a>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact" class="s">
+  <span class="ey reveal">Contact Us</span>
+  <h2 class="h2 reveal" style="transition-delay:.1s;">Drop Off.<br><em>Pick Up. Done.</em></h2>
+  <div class="contact-grid">
+    <div class="ci-list reveal">
+      <div class="ci"><div class="ci-ic">📍</div><div><div class="ci-lbl">Address</div><div class="ci-val">3709 Spring Valley Rd, Addison TX 75001</div></div></div>
+      <div class="ci"><div class="ci-ic">📞</div><div><div class="ci-lbl">Phone</div><div class="ci-val"><a href="tel:9722431982">(972) 243-1982</a></div></div></div>
+      <div class="ci"><div class="ci-ic">🕐</div><div><div class="ci-lbl">Mon / Tue / Thu</div><div class="ci-val">7:00 AM – 6:00 PM</div></div></div>
+      <div class="ci"><div class="ci-ic">🕐</div><div><div class="ci-lbl">Wed / Fri</div><div class="ci-val">7:00 AM – 5:00 PM</div></div></div>
+      <div class="ci"><div class="ci-ic">🕐</div><div><div class="ci-lbl">Saturday</div><div class="ci-val">9:00 AM – 3:00 PM</div></div></div>
+      <div class="ci"><div class="ci-ic">🚗</div><div><div class="ci-lbl">Drive-Thru</div><div class="ci-val">Available all hours — stay in your car</div></div></div>
+    </div>
+    <div class="cf reveal" style="transition-delay:.15s;">
+      <div style="font-family:var(--font-d);font-size:22px;font-weight:700;color:var(--navy);margin-bottom:4px;">Schedule a Drop-Off</div>
+      <div style="font-size:13px;color:var(--text3);margin-bottom:22px;">We'll confirm your drop-off time within a few hours.</div>
+      <div class="fsucc" id="fsucc"><div class="fsucc-t">Request Sent! 👔</div><div style="font-size:13px;color:var(--text2);margin-top:4px;">We'll call to confirm your drop-off time. See you soon!</div></div>
+      <div class="fgrid"><div><label class="flbl">First Name</label><input class="fin" id="f1" placeholder="First name"></div><div><label class="flbl">Last Name</label><input class="fin" id="f2" placeholder="Last name"></div></div>
+      <label class="flbl">Phone Number</label><input class="fin" id="f3" type="tel" placeholder="(972) 000-0000">
+      <label class="flbl">What are you dropping off?</label>
+      <select class="fsel" id="f4">
+        <option value="">Select items...</option>
+        <option>Dress shirts</option>
+        <option>Suit / Blazer</option>
+        <option>Dress / Gown</option>
+        <option>Pants / Slacks</option>
+        <option>Coat / Jacket</option>
+        <option>Wedding Gown</option>
+        <option>Bedding / Comforter</option>
+        <option>Alterations / Repairs</option>
+        <option>Shoe Repair</option>
+        <option>Mixed Items</option>
+      </select>
+      <label class="flbl">Preferred Drop-Off Method</label>
+      <select class="fsel" id="f5">
+        <option>Walk In</option>
+        <option>Drive-Thru</option>
+        <option>Home Pickup Request</option>
+      </select>
+      <button class="fsub" onclick="submitForm()"><span>SCHEDULE MY DROP-OFF →</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fi">
+    <div class="ft">
+      <div>
+        <div class="fb-name">Metrocrest <span>Cleaners</span></div>
+        <div class="fb-est">Est. 1999 · Addison, Texas</div>
+        <div class="fb-desc">A local family-owned dry cleaner serving the Addison community for over 25 years. Professional cleaning, expert alterations, shoe repair and honest service — every single time.</div>
+      </div>
+      <div>
+        <div class="fc-t">Services</div>
+        <div class="fc-links">
+          <a href="#services">Dry Cleaning</a>
+          <a href="#services">Alterations</a>
+          <a href="#services">Shoe Repair</a>
+          <a href="#services">Wedding Gowns</a>
+          <a href="#services">Bedding & Comforters</a>
+          <a href="#services">Same-Day Service</a>
+        </div>
+      </div>
+      <div>
+        <div class="fc-t">Contact</div>
+        <div class="fc-links">
+          <a href="tel:9722431982">(972) 243-1982</a>
+          <a href="#hours">Hours & Location</a>
+          <a href="#contact">Schedule Drop-Off</a>
+          <a href="#">Download Our App</a>
+          <a href="https://maps.google.com" target="_blank">Get Directions</a>
+        </div>
+      </div>
+    </div>
+    <div class="fb-bot">
+      <div class="fb-copy">© 2026 Metrocrest Dry Cleaners · 3709 Spring Valley Rd, Addison TX 75001 · (972) 243-1982</div>
+      <div class="fb-copy">Serving Addison Since 1999 👔</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// CANVAS — warm subtle particles
+var canvas=document.getElementById('bgc');
+var ctx=canvas.getContext('2d');
+canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+window.addEventListener('resize',function(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;});
+var pts=[];
+for(var i=0;i<20;i++){pts.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-.5)*.15,vy:(Math.random()-.5)*.15,r:Math.random()*20+8,o:Math.random()*.025+.005});}
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  pts.forEach(function(p){
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.strokeStyle='rgba(201,150,58,'+p.o+')';ctx.lineWidth=1;ctx.stroke();
+    p.x+=p.vx;p.y+=p.vy;
+    if(p.x<-50||p.x>canvas.width+50)p.vx*=-1;
+    if(p.y<-50||p.y>canvas.height+50)p.vy*=-1;
+  });
+  requestAnimationFrame(draw);
+}
+draw();
+
+// NAV
+window.addEventListener('scroll',function(){
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60);
+  document.getElementById('sb').style.width=((window.scrollY/(document.body.scrollHeight-window.innerHeight))*100)+'%';
+});
+
+// HIGHLIGHT TODAY
+var days=['hr-sun','hr-mon','hr-tue','hr-wed','hr-thu','hr-fri','hr-sat'];
+var today=new Date().getDay();
+var el=document.getElementById(days[today]);
+if(el)el.classList.add('today');
+
+// MOBILE MENU
+function toggleMenu(){document.getElementById('mob-menu').classList.toggle('open');}
+
+// REVEAL
+var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:.07});
+document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el);});
+
+// RIPPLE
+document.querySelectorAll('.btn-gold,.btn-light,.btn-navy,.nav-cta,.ap-btn,.fsub').forEach(function(btn){
+  btn.style.position='relative';btn.style.overflow='hidden';
+  btn.addEventListener('click',function(e){
+    var r=document.createElement('span');r.className='rip';
+    var rect=btn.getBoundingClientRect();
+    var size=Math.max(rect.width,rect.height)*2;
+    r.style.cssText='width:'+size+'px;height:'+size+'px;left:'+(e.clientX-rect.left-size/2)+'px;top:'+(e.clientY-rect.top-size/2)+'px;position:absolute;';
+    btn.appendChild(r);setTimeout(function(){r.remove();},700);
+  });
+});
+
+// 3D TILT
+document.querySelectorAll('.rc,.sc,.hi-card').forEach(function(c){
+  c.addEventListener('mousemove',function(e){
+    var rect=c.getBoundingClientRect();
+    var x=((e.clientX-rect.left)/rect.width-.5)*8;
+    var y=((e.clientY-rect.top)/rect.height-.5)*-8;
+    c.style.transform='perspective(600px) rotateY('+x+'deg) rotateX('+y+'deg) translateY(-4px)';
+  });
+  c.addEventListener('mouseleave',function(){c.style.transform='';});
+});
+
+// CONFETTI
+function fireConf(){
+  var cols=['#c9963a','#e8b44e','#fff','#f5e6c8','#0d1f35'];
+  for(var i=0;i<50;i++){(function(i){setTimeout(function(){
+    var c=document.createElement('div');c.className='conf';
+    var x=Math.random()*window.innerWidth;
+    var col=cols[Math.floor(Math.random()*cols.length)];
+    var sz=(Math.random()*8)+4;
+    c.style.cssText='position:fixed;left:'+x+'px;top:-20px;width:'+sz+'px;height:'+sz+'px;background:'+col+';pointer-events:none;z-index:9999;border-radius:'+(Math.random()>.5?'50%':'2px')+';animation-duration:'+(Math.random()*.8+.9)+'s;animation-delay:'+(Math.random()*.3)+'s;';
+    document.body.appendChild(c);setTimeout(function(){c.remove();},2500);
+  },i*18);})(i);}
+}
+
+// FORM
+function submitForm(){
+  var name=document.getElementById('f1').value.trim();
+  var phone=document.getElementById('f3').value.trim();
+  if(!name||!phone){alert('Please enter your name and phone number.');return;}
+  document.getElementById('fsucc').classList.add('show');
+  fireConf();
+  ['f1','f2','f3'].forEach(function(id){document.getElementById(id).value='';});
+  document.getElementById('fsucc').scrollIntoView({behavior:'smooth'});
+}
+
+// HERO PARALLAX
+window.addEventListener('scroll',function(){
+  var bg=document.querySelector('.hero-left-bg');
+  if(bg&&window.scrollY<window.innerHeight)bg.style.transform='translateY('+(window.scrollY*.1)+'px)';
+});
+</script>
+</body>
+</html>
