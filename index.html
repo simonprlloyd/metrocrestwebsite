@@ -369,8 +369,8 @@ section{padding:120px 32px;position:relative}
 
 .map-wrap{margin-top:24px;border-radius:6px;overflow:hidden;border:1px solid var(--line-2);background:var(--paper)}
 .map-wrap iframe{display:block;width:100%;height:280px;border:0}
-.map-note{margin-top:10px;font-size:11.5px;color:var(--ink-3);line-height:1.55;padding:0 4px}
-.map-note code{background:var(--cream);padding:1px 6px;border-radius:3px;font-size:11px;color:var(--navy)}
+.map-link{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:13px;font-weight:600;color:var(--navy);letter-spacing:0.2px;padding:8px 14px;border:1px solid var(--line);border-radius:100px;transition:all .2s;background:var(--paper)}
+.map-link:hover{border-color:var(--navy);background:var(--navy);color:#fff}
 
 .form{background:var(--paper);border:1px solid var(--line-2);border-radius:10px;padding:40px}
 .form-title{font-family:var(--font-d);font-weight:500;font-size:26px;color:var(--navy);letter-spacing:-0.4px;margin-bottom:8px}
@@ -1057,12 +1057,10 @@ footer{background:var(--navy);color:rgba(255,255,255,0.7);padding:80px 32px 36px
         <div class="map-wrap">
           <iframe
             title="Metrocrest Cleaners location map — 3709 Spring Valley Rd, Addison, TX 75001"
-            src="https://www.google.com/maps/embed/v1/place?q=Metrocrest+Cleaners,+3709+Spring+Valley+Rd,+Addison,+TX+75001&key=YOUR_API_KEY"
+            src="https://maps.google.com/maps?q=3709+Spring+Valley+Rd,+Addison,+TX+75001&z=15&output=embed"
             allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-        <div class="map-note">
-          <strong style="color:var(--navy)">Developer note:</strong> Replace <code>YOUR_API_KEY</code> with a Google Maps Embed API key, or swap the <code>iframe</code> src for the share-embed link from Google Maps (search "Metrocrest Cleaners Addison" → Share → Embed a map → Copy HTML).
-        </div>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=3709+Spring+Valley+Rd,+Addison,+TX+75001" target="_blank" rel="noopener" class="map-link">Get directions →</a>
       </div>
       <form class="form reveal" id="contactForm" onsubmit="submitForm(event)">
         <div class="form-title">Send Us a Request</div>
