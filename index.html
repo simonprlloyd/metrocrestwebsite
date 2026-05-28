@@ -170,7 +170,58 @@
   --max:1240px;
 }
 html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
-body{background:var(--bg);color:var(--ink);font-family:var(--font-b);font-size:16px;line-height:1.5;overflow-x:hidden}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-b);font-size:16px;line-height:1.5;overflow-x:hidden;position:relative}
+
+/* ───── GRAIN TEXTURE ───── */
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.7'/%3E%3C/svg%3E");mix-blend-mode:multiply}
+
+/* ───── SCROLL PROGRESS BAR ───── */
+.progress{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--gold) 0%,var(--gold-2) 50%,var(--gold) 100%);background-size:200% 100%;z-index:9999;transition:width .08s ease-out;box-shadow:0 1px 8px rgba(184,137,60,0.5);animation:stripeShift 4s ease-in-out infinite}
+
+/* ───── SECTION INDICATOR ───── */
+.section-num{position:absolute;top:32px;right:32px;font-family:var(--font-d);font-style:italic;font-weight:400;font-size:13px;color:var(--ink-3);letter-spacing:1px;opacity:0;transform:translateX(10px);transition:all .8s cubic-bezier(.2,.9,.3,1);pointer-events:none;z-index:2}
+.section-num.visible{opacity:.65;transform:translateX(0)}
+.section-num em{font-style:normal;color:var(--gold);font-weight:500}
+section.bridal .section-num,section.cta-band .section-num,footer .section-num{color:rgba(255,255,255,0.4)}
+section.bridal .section-num em,section.cta-band .section-num em{color:var(--gold-2)}
+
+/* ───── SECTION DRAW-LINE DIVIDERS ───── */
+.draw-line{position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:0;background:var(--gold);transition:height 1.2s cubic-bezier(.2,.9,.3,1);z-index:3}
+.draw-line.drawn{height:48px}
+section.bridal .draw-line,section.cta-band .draw-line{background:var(--gold-2)}
+
+/* ───── MAGNETIC BUTTONS ───── */
+.btn-primary,.btn-secondary,.btn-gold,.nav-call,.form-submit,.chat-cta,.cta-call-alt{transition:transform .25s cubic-bezier(.2,.9,.3,1.2),background .25s,color .25s,box-shadow .3s,border-color .25s}
+
+/* ───── WORD REVEAL ON H2 ───── */
+.h2 .word,.h .word{display:inline-block;opacity:0;transform:translateY(20px) rotate(2deg);transition:opacity .7s,transform .7s cubic-bezier(.2,.9,.3,1.2)}
+.h2.revealed .word,.h.revealed .word{opacity:1;transform:translateY(0) rotate(0)}
+/* delayed cascade — each word reveals 60ms after the previous */
+.h2.revealed .word:nth-child(1),.h.revealed .word:nth-child(1){transition-delay:.05s}
+.h2.revealed .word:nth-child(2),.h.revealed .word:nth-child(2){transition-delay:.12s}
+.h2.revealed .word:nth-child(3),.h.revealed .word:nth-child(3){transition-delay:.19s}
+.h2.revealed .word:nth-child(4),.h.revealed .word:nth-child(4){transition-delay:.26s}
+.h2.revealed .word:nth-child(5),.h.revealed .word:nth-child(5){transition-delay:.33s}
+.h2.revealed .word:nth-child(6),.h.revealed .word:nth-child(6){transition-delay:.40s}
+.h2.revealed .word:nth-child(7),.h.revealed .word:nth-child(7){transition-delay:.47s}
+.h2.revealed .word:nth-child(8),.h.revealed .word:nth-child(8){transition-delay:.54s}
+.h2.revealed .word:nth-child(n+9),.h.revealed .word:nth-child(n+9){transition-delay:.61s}
+
+.h2{position:relative;padding-bottom:6px}
+.h2::after{content:'';position:absolute;left:0;bottom:0;height:3px;width:0;background:linear-gradient(90deg,var(--gold),var(--gold-2));transition:width 1s cubic-bezier(.2,.9,.3,1) .6s;border-radius:2px}
+.h2.revealed::after{width:72px}
+section.bridal .h2::after,section.cta-band .h2::after{background:linear-gradient(90deg,var(--gold-2),var(--rose))}
+.contact-head .h2::after,.events-head .h2::after,.faq-head .h2::after,.areas-head .h2::after,.reviews-head .h2::after{left:50%;transform:translateX(-50%)}
+.events .h2::after,.contact .h2::after,.faq .h2::after,.areas .h2::after,.reviews .h2::after{left:50%;transform:translateX(-50%)}
+
+/* ───── TAP RIPPLE (mobile + desktop click) ───── */
+.btn-primary,.btn-secondary,.btn-gold,.form-submit,.nav-call,.cta-call-alt,.chat-cta,.btn-tap{position:relative;overflow:hidden}
+.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,0.4);transform:scale(0);animation:rippleGo .65s linear;pointer-events:none}
+.btn-gold .ripple,.form-submit .ripple{background:rgba(15,34,56,0.25)}
+@keyframes rippleGo{to{transform:scale(4);opacity:0}}
+
+/* ───── PARALLAX TARGETS ───── */
+.parallax-y{will-change:transform;transition:transform .1s ease-out}
 a{text-decoration:none;color:inherit}
 img{max-width:100%;display:block}
 button{font-family:inherit;cursor:pointer;border:none;background:none}
@@ -223,10 +274,15 @@ section{padding:120px 32px;position:relative}
 .hero-tag{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:32px}
 .hero-tag::before{content:'';width:24px;height:1px;background:var(--gold)}
 .hero-tag strong{color:var(--navy);font-weight:600}
-.hero h1{font-family:var(--font-d);font-weight:400;font-size:clamp(48px,7.5vw,104px);line-height:1.02;letter-spacing:-2.5px;color:var(--navy);margin-bottom:32px;max-width:14ch}
-.hero h1 em{font-style:italic;color:var(--gold);font-weight:400}
+.hero h1{font-family:var(--font-d);font-weight:400;font-size:clamp(52px,8vw,116px);line-height:1.0;letter-spacing:-3px;color:var(--navy);margin-bottom:32px;max-width:14ch}
+.hero h1 em{font-style:italic;color:var(--gold);font-weight:400;position:relative;display:inline-block}
+.hero h1 em::after{content:'';position:absolute;left:-2%;right:-2%;bottom:0.08em;height:0.32em;background:rgba(184,137,60,0.18);z-index:-1;border-radius:2px;transform:skewX(-6deg)}
 .hero-lede{font-size:19px;line-height:1.65;color:var(--ink-2);max-width:620px;margin-bottom:44px;font-weight:400}
-.hero-cta{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:56px}
+.hero-cta{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:18px}
+.hero-no-call{display:inline-flex;align-items:center;font-size:13.5px;color:var(--ink-2);margin-bottom:48px;letter-spacing:0.1px;transition:color .2s;border-bottom:1px solid transparent;padding-bottom:2px;opacity:0;animation:fadeUp .8s 1.05s forwards}
+.hero-no-call strong{color:var(--navy);font-weight:600;margin-left:4px}
+.hero-no-call:hover{color:var(--navy)}
+.hero-no-call:hover strong{color:var(--gold)}
 .hero-meta{display:flex;gap:48px;flex-wrap:wrap;padding-top:32px;border-top:1px solid var(--line-2);max-width:680px}
 .hero-meta-item{display:flex;flex-direction:column;gap:4px}
 .hero-meta-num{font-family:var(--font-d);font-weight:500;font-size:28px;color:var(--navy);line-height:1;letter-spacing:-0.5px}
@@ -348,43 +404,64 @@ section{padding:120px 32px;position:relative}
 
 /* ───── CTA BAND ───── */
 .cta-band{background:var(--navy);color:#fff;padding:100px 32px;text-align:center;position:relative;overflow:hidden}
+.cta-band::before{content:'';position:absolute;top:-20%;left:-10%;width:60%;height:140%;background:radial-gradient(ellipse at center,rgba(192,133,119,0.18) 0%,transparent 60%);pointer-events:none;z-index:0}
+.cta-band::after{content:'';position:absolute;top:-20%;right:-10%;width:60%;height:140%;background:radial-gradient(ellipse at center,rgba(184,137,60,0.15) 0%,transparent 60%);pointer-events:none;z-index:0}
 .cta-band-inner{max-width:780px;margin:0 auto;position:relative;z-index:1}
 .cta-band h2{color:#fff;margin-bottom:18px}
-.cta-band h2 em{color:var(--gold-2)}
+.cta-band h2 em{color:var(--rose);position:relative;display:inline-block}
+.cta-band h2 em::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--rose),transparent);opacity:.6}
 .cta-band p{font-size:17px;color:rgba(255,255,255,0.65);margin-bottom:36px;line-height:1.65}
-.cta-band-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.cta-band-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;align-items:center}
+.cta-call-alt{color:#fff!important;border-color:rgba(255,255,255,0.3)!important;background:transparent!important}
+.cta-call-alt:hover{background:rgba(255,255,255,0.08)!important;border-color:rgba(255,255,255,0.6)!important;color:#fff!important}
 
 /* ───── CONTACT ───── */
 .contact{background:var(--bg);padding:140px 32px}
-.contact-head{margin-bottom:64px;max-width:680px}
-.contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:64px;align-items:start;max-width:var(--max);margin:0 auto}
-.ci-list{display:flex;flex-direction:column;gap:0;margin-bottom:32px}
-.ci-row{padding:24px 0;border-bottom:1px solid var(--line-2);display:grid;grid-template-columns:120px 1fr;gap:24px;align-items:start}
+.contact-head{margin-bottom:56px;max-width:760px}
+.contact-head .lede{margin-top:18px}
+.contact-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:start;max-width:var(--max);margin:0 auto}
+.ci-list{display:flex;flex-direction:column;gap:0;margin-bottom:24px}
+.ci-row{padding:18px 0;border-bottom:1px solid var(--line-2);display:grid;grid-template-columns:110px 1fr;gap:20px;align-items:start}
 .ci-row:last-child{border-bottom:none}
-.ci-lbl{font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:var(--ink-3);font-weight:600;padding-top:2px}
-.ci-val{font-family:var(--font-d);font-weight:500;font-size:18px;color:var(--navy);letter-spacing:-0.2px;line-height:1.3}
+.ci-lbl{font-size:10.5px;letter-spacing:1.8px;text-transform:uppercase;color:var(--ink-3);font-weight:600;padding-top:2px}
+.ci-val{font-family:var(--font-d);font-weight:500;font-size:17px;color:var(--navy);letter-spacing:-0.2px;line-height:1.3}
 .ci-val a{color:var(--gold);transition:opacity .2s}
 .ci-val a:hover{opacity:.7}
-.ci-sub{font-size:13px;color:var(--ink-2);margin-top:4px;font-family:var(--font-b);font-weight:400;letter-spacing:0}
+.ci-sub{font-size:12.5px;color:var(--ink-2);margin-top:4px;font-family:var(--font-b);font-weight:400;letter-spacing:0}
+.ci-or{font-family:var(--font-d);font-style:italic;font-size:15px;color:var(--ink-3);letter-spacing:0.3px;margin-bottom:18px;text-align:center;display:block}
+.contact-side{padding-top:8px}
 
-.map-wrap{margin-top:24px;border-radius:6px;overflow:hidden;border:1px solid var(--line-2);background:var(--paper)}
-.map-wrap iframe{display:block;width:100%;height:280px;border:0}
+.map-wrap{margin-top:20px;border-radius:6px;overflow:hidden;border:1px solid var(--line-2);background:var(--paper)}
+.map-wrap iframe{display:block;width:100%;height:240px;border:0}
 .map-link{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:13px;font-weight:600;color:var(--navy);letter-spacing:0.2px;padding:8px 14px;border:1px solid var(--line);border-radius:100px;transition:all .2s;background:var(--paper)}
 .map-link:hover{border-color:var(--navy);background:var(--navy);color:#fff}
 
-.form{background:var(--paper);border:1px solid var(--line-2);border-radius:10px;padding:40px}
-.form-title{font-family:var(--font-d);font-weight:500;font-size:26px;color:var(--navy);letter-spacing:-0.4px;margin-bottom:8px}
-.form-sub{font-size:14px;color:var(--ink-2);margin-bottom:28px;line-height:1.55}
+/* FORM — visually elevated, the primary path */
+.form{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:0;overflow:hidden;box-shadow:0 24px 60px -20px rgba(15,34,56,0.18),0 6px 20px -8px rgba(184,137,60,0.12);transition:box-shadow .3s}
+.form:hover{box-shadow:0 28px 70px -16px rgba(15,34,56,0.22),0 8px 24px -8px rgba(184,137,60,0.18)}
+.form-stripe{height:5px;background:linear-gradient(90deg,var(--gold) 0%,var(--gold-2) 50%,var(--gold) 100%);background-size:200% 100%;animation:stripeShift 4s ease-in-out infinite}
+@keyframes stripeShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.form-header{padding:36px 40px 28px;border-bottom:1px solid var(--line-2);background:linear-gradient(180deg,#fdfbf6 0%,var(--paper) 100%)}
+.form-badge{display:inline-flex;align-items:center;gap:7px;padding:6px 13px;background:var(--gold-soft);border:1px solid rgba(184,137,60,0.3);border-radius:100px;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:18px}
+.form-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.form-title{font-family:var(--font-d);font-weight:500;font-size:32px;color:var(--navy);letter-spacing:-0.5px;line-height:1.1;margin-bottom:10px}
+.form-sub{font-size:14.5px;color:var(--ink-2);line-height:1.6}
+.form > .fr-grid:first-of-type,.form > .fld:first-of-type{padding-top:28px}
+.form > .fr-grid,.form > .fld{padding-left:40px;padding-right:40px}
 .fr-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.fld{margin-bottom:16px}
+.fld{margin-bottom:18px}
 .fld label{display:block;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:8px}
-.fld input,.fld select,.fld textarea{width:100%;padding:13px 16px;border:1px solid var(--line);border-radius:6px;background:var(--bg);font-family:var(--font-b);font-size:14px;color:var(--ink);outline:none;transition:border-color .2s,background .2s}
-.fld input:focus,.fld select:focus,.fld textarea:focus{border-color:var(--navy);background:var(--paper)}
+.fld input,.fld select,.fld textarea{width:100%;padding:14px 16px;border:1.5px solid var(--line);border-radius:8px;background:var(--bg);font-family:var(--font-b);font-size:14.5px;color:var(--ink);outline:none;transition:all .2s}
+.fld input:focus,.fld select:focus,.fld textarea:focus{border-color:var(--gold);background:var(--paper);box-shadow:0 0 0 4px var(--gold-soft)}
 .fld textarea{resize:vertical;min-height:90px;line-height:1.5}
 .fld select{cursor:pointer}
-.form button{width:100%;background:var(--navy);color:#fff;padding:16px;border-radius:6px;font-size:13.5px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;transition:background .2s;margin-top:8px}
-.form button:hover{background:var(--navy-soft)}
-.form-success{display:none;margin-top:16px;padding:18px 20px;background:var(--gold-soft);border:1px solid rgba(184,137,60,0.3);border-radius:6px;text-align:center}
+.form-submit{display:block;width:calc(100% - 80px);margin:8px 40px 16px;background:var(--gold);color:var(--navy);padding:18px;border-radius:8px;font-size:14px;font-weight:700;letter-spacing:0.4px;transition:all .25s;cursor:pointer;border:none;box-shadow:0 10px 24px -8px rgba(184,137,60,0.45);position:relative;overflow:hidden}
+.form-submit:hover{background:var(--gold-2);transform:translateY(-2px);box-shadow:0 14px 32px -8px rgba(184,137,60,0.6)}
+.form-submit::after{content:' →';transition:margin-left .25s;display:inline-block}
+.form-submit:hover::after{margin-left:4px}
+.form-trust{display:flex;flex-wrap:wrap;gap:6px 16px;padding:0 40px 28px;font-size:11.5px;color:var(--ink-3);font-weight:500;letter-spacing:0.2px}
+.form-trust span{display:inline-flex;align-items:center;gap:4px}
+.form-success{display:none;margin:0 40px 32px;padding:18px 20px;background:var(--gold-soft);border:1px solid rgba(184,137,60,0.3);border-radius:6px;text-align:center}
 .form-success.show{display:block}
 .form-success-t{font-family:var(--font-d);font-weight:500;font-size:18px;color:var(--gold);font-style:italic;margin-bottom:4px}
 .form-success-d{font-size:13px;color:var(--ink-2)}
@@ -529,9 +606,13 @@ footer{background:var(--navy);color:rgba(255,255,255,0.7);padding:80px 32px 36px
 .chat-typing span:nth-child(2){animation-delay:.15s}
 .chat-typing span:nth-child(3){animation-delay:.3s}
 @keyframes typing{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-5px);opacity:1}}
-.chat-foot{padding:14px 18px;background:var(--paper);border-top:1px solid var(--line-2)}
-.chat-cta{display:block;width:100%;text-align:center;padding:11px 16px;background:var(--navy);color:#fff;border-radius:8px;font-size:13px;font-weight:600;letter-spacing:0.3px;transition:background .2s}
+.chat-msg-action{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;margin-top:-4px;padding:10px 16px;background:var(--gold);color:var(--navy);border-radius:100px;font-size:13px;font-weight:600;letter-spacing:0.2px;text-decoration:none;transition:all .25s;box-shadow:0 6px 16px -4px rgba(184,137,60,0.4);opacity:0;animation:msgIn .35s .2s forwards;border:1px solid var(--gold)}
+.chat-msg-action:hover{background:var(--gold-2);transform:translateY(-2px);box-shadow:0 10px 20px -4px rgba(184,137,60,0.55)}
+.chat-foot{padding:14px 18px;background:var(--paper);border-top:1px solid var(--line-2);display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.chat-cta{display:block;width:100%;text-align:center;padding:11px 12px;background:var(--navy);color:#fff;border-radius:8px;font-size:12.5px;font-weight:600;letter-spacing:0.2px;transition:background .2s}
 .chat-cta:hover{background:var(--gold);color:var(--navy)}
+.chat-cta.secondary{background:var(--paper);color:var(--navy);border:1px solid var(--gold)}
+.chat-cta.secondary:hover{background:var(--gold);color:var(--navy);border-color:var(--gold)}
 
 @media(max-width:560px){
   .fcall{right:22px;bottom:90px}
@@ -551,7 +632,8 @@ footer{background:var(--navy);color:rgba(255,255,255,0.7);padding:80px 32px 36px
   .hero{padding:60px 24px 90px;min-height:auto}
   .services-head{grid-template-columns:1fr;gap:32px;margin-bottom:48px}
   .services-grid{grid-template-columns:1fr}
-  .bridal-grid,.everyday-grid,.hours-grid,.contact-grid{grid-template-columns:1fr;gap:48px}
+  .bridal-grid,.everyday-grid,.hours-grid{grid-template-columns:1fr;gap:48px}
+  .contact-grid{grid-template-columns:1fr;gap:36px}
   .bridal-features{grid-template-columns:1fr}
   .bridal-feat{border-bottom:1px solid rgba(255,255,255,0.08)!important}
   .bridal-feat:last-child{border-bottom:none!important}
@@ -569,7 +651,12 @@ footer{background:var(--navy);color:rgba(255,255,255,0.7);padding:80px 32px 36px
   .events-grid,.areas-grid{grid-template-columns:1fr}
   .foot-grid{grid-template-columns:1fr;gap:32px}
   .fr-grid{grid-template-columns:1fr}
-  .form{padding:28px 24px}
+  .form-header{padding:28px 24px 22px}
+  .form-title{font-size:26px}
+  .form > .fr-grid,.form > .fld{padding-left:24px;padding-right:24px}
+  .form-submit{width:calc(100% - 48px);margin:8px 24px 14px;padding:16px;font-size:13.5px}
+  .form-trust{padding:0 24px 24px;font-size:11px}
+  .form-success{margin:0 24px 24px}
   .hero-meta{gap:24px}
   .hero-meta-num{font-size:22px}
   .ci-row{grid-template-columns:1fr;gap:6px}
@@ -578,6 +665,9 @@ footer{background:var(--navy);color:rgba(255,255,255,0.7);padding:80px 32px 36px
 </style>
 </head>
 <body>
+
+<!-- SCROLL PROGRESS -->
+<div class="progress" id="progress" aria-hidden="true"></div>
 
 <!-- SKIP LINK -->
 <a href="#main" style="position:absolute;left:-9999px" onfocus="this.style.cssText='position:fixed;top:10px;left:10px;background:var(--navy);color:#fff;padding:12px 20px;border-radius:6px;z-index:99999'">Skip to main content</a>
@@ -623,7 +713,7 @@ footer{background:var(--navy);color:rgba(255,255,255,0.7);padding:80px 32px 36px
 <!-- HERO -->
 <section class="hero">
   <div class="hero-grid">
-    <div>
+    <div class="parallax-y" data-parallax-speed="0.3">
       <div class="hero-greeting" id="heroGreeting">
         <span class="hg-pulse" aria-hidden="true"></span>
         <span class="hg-status" id="hgStatus">Open now · until 6 PM today</span>
@@ -639,6 +729,7 @@ footer{background:var(--navy);color:rgba(255,255,255,0.7);padding:80px 32px 36px
         <a href="tel:9722431982" class="btn-primary" id="heroPrimaryCta">Call (972) 243-1982</a>
         <a href="#contact" class="btn-secondary" id="heroSecondaryCta">Book Bridal Consultation</a>
       </div>
+      <a href="#contact" class="hero-no-call">Prefer not to call? <strong>Send a message instead →</strong></a>
       <div class="hero-meta">
         <div class="hero-meta-item">
           <div class="hero-meta-num"><span class="count" data-target="25">0</span><em>+</em></div>
@@ -694,6 +785,8 @@ footer{background:var(--navy);color:rgba(255,255,255,0.7);padding:80px 32px 36px
 
 <!-- SERVICES OVERVIEW -->
 <section class="services" id="services">
+  <div class="draw-line"></div>
+  <div class="section-num">№ <em>01</em> / 10 — What We Do</div>
   <div class="wrap">
     <div class="services-head reveal">
       <div>
@@ -769,6 +862,8 @@ footer{background:var(--navy);color:rgba(255,255,255,0.7);padding:80px 32px 36px
 
 <!-- BRIDAL FEATURE -->
 <section class="bridal" id="bridal">
+  <div class="draw-line"></div>
+  <div class="section-num">№ <em>02</em> / 10 — Bridal House</div>
   <div class="bridal-grid">
     <div class="reveal">
       <span class="eyebrow">The Bridal House</span>
@@ -813,6 +908,8 @@ footer{background:var(--navy);color:rgba(255,255,255,0.7);padding:80px 32px 36px
 
 <!-- EVENTS & LINENS -->
 <section class="events" id="events">
+  <div class="draw-line"></div>
+  <div class="section-num">№ <em>03</em> / 10 — Events</div>
   <div class="wrap">
     <div class="events-head reveal">
       <span class="eyebrow">Events &amp; Wedding Linens</span>
@@ -866,6 +963,8 @@ footer{background:var(--navy);color:rgba(255,255,255,0.7);padding:80px 32px 36px
 
 <!-- DRY CLEANING & EVERYDAY -->
 <section class="everyday" id="everyday">
+  <div class="draw-line"></div>
+  <div class="section-num">№ <em>04</em> / 10 — Dry Cleaning</div>
   <div class="everyday-grid">
     <div class="reveal">
       <span class="eyebrow">Dry Cleaning &amp; Everyday</span>
@@ -935,6 +1034,8 @@ footer{background:var(--navy);color:rgba(255,255,255,0.7);padding:80px 32px 36px
 
 <!-- REVIEWS -->
 <section class="reviews" id="reviews">
+  <div class="draw-line"></div>
+  <div class="section-num">№ <em>05</em> / 10 — Reviews</div>
   <div class="wrap">
     <div class="reviews-head reveal">
       <div class="stars">★ ★ ★ ★ ★</div>
@@ -966,6 +1067,8 @@ footer{background:var(--navy);color:rgba(255,255,255,0.7);padding:80px 32px 36px
 
 <!-- HOURS -->
 <section class="hours">
+  <div class="draw-line"></div>
+  <div class="section-num">№ <em>06</em> / 10 — Hours</div>
   <div class="hours-grid">
     <div class="reveal">
       <span class="eyebrow">Hours &amp; Visit</span>
@@ -1004,67 +1107,37 @@ footer{background:var(--navy);color:rgba(255,255,255,0.7);padding:80px 32px 36px
 
 <!-- CTA BAND -->
 <section class="cta-band">
+  <div class="draw-line"></div>
+  <div class="section-num">№ <em>07</em> / 10 — Begin</div>
   <div class="cta-band-inner reveal">
     <span class="eyebrow" style="color:var(--gold-2);margin-bottom:14px;display:inline-block">Begin Your Visit</span>
     <h2 class="h h2">Bring us your <em>gown,</em><br>your suit, your weekend laundry.</h2>
-    <p>One family. Six crafts. Every garment treated like it's the only one in the shop.</p>
+    <p>One family. Six crafts. Every garment treated like it's the only one in the shop. <strong style="color:#fff;font-weight:500">Skip the phone — send a quick message and we'll reply within one business day.</strong></p>
     <div class="cta-band-btns">
-      <a href="tel:9722431982" class="btn-gold">Call (972) 243-1982</a>
-      <a href="#contact" class="btn-secondary" style="color:#fff;border-color:rgba(255,255,255,0.3)">Send a Message</a>
+      <a href="#contact" class="btn-gold">Send a Message →</a>
+      <a href="tel:9722431982" class="btn-secondary cta-call-alt">Or Call (972) 243-1982</a>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section class="contact" id="contact">
+  <div class="draw-line"></div>
+  <div class="section-num">№ <em>08</em> / 10 — Contact</div>
   <div class="wrap">
     <div class="contact-head reveal">
-      <span class="eyebrow">Visit &amp; Contact</span>
+      <span class="eyebrow">Skip the call · Send a message</span>
       <h2 class="h h2">Tell us what<br>you <em>need.</em></h2>
+      <p class="lede" style="margin-top:18px">Don't feel like calling? Fill the form below and we'll get back to you within <strong style="color:var(--navy);font-weight:600">one business day</strong> — by phone, text, or email, whichever you prefer.</p>
     </div>
     <div class="contact-grid">
-      <div class="reveal">
-        <div class="ci-list">
-          <div class="ci-row">
-            <div class="ci-lbl">Address</div>
-            <div>
-              <div class="ci-val">3709 Spring Valley Rd</div>
-              <div class="ci-sub">Addison, TX 75001</div>
-            </div>
-          </div>
-          <div class="ci-row">
-            <div class="ci-lbl">Direct Line</div>
-            <div>
-              <div class="ci-val"><a href="tel:9722431982">(972) 243-1982</a></div>
-              <div class="ci-sub">Call or text — same number.</div>
-            </div>
-          </div>
-          <div class="ci-row">
-            <div class="ci-lbl">Bridal</div>
-            <div>
-              <div class="ci-val">By appointment</div>
-              <div class="ci-sub">Consultations available outside standard hours.</div>
-            </div>
-          </div>
-          <div class="ci-row">
-            <div class="ci-lbl">Service Area</div>
-            <div>
-              <div class="ci-val">DFW Metroplex</div>
-              <div class="ci-sub">Addison, Dallas, Plano, Carrollton, Farmers Branch, Richardson, Frisco.</div>
-            </div>
-          </div>
-        </div>
-        <div class="map-wrap">
-          <iframe
-            title="Metrocrest Cleaners location map — 3709 Spring Valley Rd, Addison, TX 75001"
-            src="https://maps.google.com/maps?q=3709+Spring+Valley+Rd,+Addison,+TX+75001&z=15&output=embed"
-            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-        <a href="https://www.google.com/maps/dir/?api=1&destination=3709+Spring+Valley+Rd,+Addison,+TX+75001" target="_blank" rel="noopener" class="map-link">Get directions →</a>
-      </div>
       <form class="form reveal" id="contactForm" onsubmit="submitForm(event)">
-        <div class="form-title">Send Us a Request</div>
-        <div class="form-sub">Bridal consultation, dry cleaning quote, or commercial account — tell us what you need and we'll reply within one business day.</div>
+        <div class="form-stripe"></div>
+        <div class="form-header">
+          <div class="form-badge">No call needed</div>
+          <div class="form-title">Send Us a Message</div>
+          <div class="form-sub">Bridal consultation, dry cleaning quote, commercial account — fill this out and we'll reply within one business day.</div>
+        </div>
         <div class="fr-grid">
           <div class="fld"><label for="f1">First Name</label><input id="f1" name="firstName" required></div>
           <div class="fld"><label for="f2">Last Name</label><input id="f2" name="lastName" required></div>
@@ -1108,18 +1181,65 @@ footer{background:var(--navy);color:rgba(255,255,255,0.7);padding:80px 32px 36px
           <label for="f6">Tell us more (optional)</label>
           <textarea id="f6" name="notes" placeholder="Wedding date, type of garment, number of pieces — anything that helps us prepare."></textarea>
         </div>
-        <button type="submit">Send Request →</button>
+        <button type="submit" class="form-submit">Send My Message — We'll Reply Within 1 Business Day</button>
+        <div class="form-trust">
+          <span>✓ No spam, ever</span>
+          <span>✓ Reply within 1 business day</span>
+          <span>✓ Phone, text, or email — your choice</span>
+        </div>
         <div class="form-success" id="formSuccess">
-          <div class="form-success-t">Your request is on its way</div>
+          <div class="form-success-t">Your message is on its way</div>
           <div class="form-success-d">We'll be in touch within one business day. Thank you for choosing Metrocrest.</div>
         </div>
       </form>
+      <div class="reveal contact-side">
+        <div class="ci-or">— or visit us —</div>
+        <div class="ci-list">
+          <div class="ci-row">
+            <div class="ci-lbl">Address</div>
+            <div>
+              <div class="ci-val">3709 Spring Valley Rd</div>
+              <div class="ci-sub">Addison, TX 75001</div>
+            </div>
+          </div>
+          <div class="ci-row">
+            <div class="ci-lbl">Direct Line</div>
+            <div>
+              <div class="ci-val"><a href="tel:9722431982">(972) 243-1982</a></div>
+              <div class="ci-sub">Call or text — same number.</div>
+            </div>
+          </div>
+          <div class="ci-row">
+            <div class="ci-lbl">Bridal</div>
+            <div>
+              <div class="ci-val">By appointment</div>
+              <div class="ci-sub">Consultations outside standard hours.</div>
+            </div>
+          </div>
+          <div class="ci-row">
+            <div class="ci-lbl">Service Area</div>
+            <div>
+              <div class="ci-val">DFW Metroplex</div>
+              <div class="ci-sub">Addison, Dallas, Plano, Carrollton, Farmers Branch, Richardson, Frisco.</div>
+            </div>
+          </div>
+        </div>
+        <div class="map-wrap">
+          <iframe
+            title="Metrocrest Cleaners location map — 3709 Spring Valley Rd, Addison, TX 75001"
+            src="https://maps.google.com/maps?q=3709+Spring+Valley+Rd,+Addison,+TX+75001&z=15&output=embed"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=3709+Spring+Valley+Rd,+Addison,+TX+75001" target="_blank" rel="noopener" class="map-link">Get directions →</a>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- FAQ -->
 <section class="faq" id="faq">
+  <div class="draw-line"></div>
+  <div class="section-num">№ <em>09</em> / 10 — FAQ</div>
   <div class="wrap">
     <div class="faq-head reveal">
       <span class="eyebrow">Frequently Asked</span>
@@ -1180,6 +1300,8 @@ footer{background:var(--navy);color:rgba(255,255,255,0.7);padding:80px 32px 36px
 
 <!-- AREAS -->
 <section class="areas" id="areas">
+  <div class="draw-line"></div>
+  <div class="section-num">№ <em>10</em> / 10 — Service Areas</div>
   <div class="wrap">
     <div class="areas-head reveal">
       <span class="eyebrow">Service Areas</span>
@@ -1277,7 +1399,8 @@ footer{background:var(--navy);color:rgba(255,255,255,0.7);padding:80px 32px 36px
       <!-- messages injected by JS -->
     </div>
     <div class="chat-foot">
-      <a href="tel:9722431982" class="chat-cta">Call (972) 243-1982 →</a>
+      <a href="tel:9722431982" class="chat-cta">📞 Call</a>
+      <a href="#contact" class="chat-cta secondary" id="chatFormCta">✉️ Send Message</a>
     </div>
   </div>
 </div>
@@ -1489,7 +1612,11 @@ document.querySelectorAll('.reveal').forEach(function(el){revealObs.observe(el);
 function submitForm(e){
   e.preventDefault();
   document.getElementById('formSuccess').classList.add('show');
-  document.getElementById('contactForm').querySelector('button').style.display = 'none';
+  var form = document.getElementById('contactForm');
+  var btn = form.querySelector('button');
+  var trust = form.querySelector('.form-trust');
+  if(btn) btn.style.display = 'none';
+  if(trust) trust.style.display = 'none';
 }
 
 // ═══════════════════════════════════════════════════════════════════════
@@ -1504,7 +1631,7 @@ function getChatMessages(){
   var saluteShort = hour < 12 ? 'morning' : (hour < 17 ? 'afternoon' : 'evening');
 
   var messages = [
-    "Good " + saluteShort + " — Wade from Metrocrest here. Anything we can help with?",
+    {text: "Good " + saluteShort + " — Wade from Metrocrest here. Anything we can help with?"}
   ];
 
   // context-aware tip selection
@@ -1512,23 +1639,23 @@ function getChatMessages(){
 
   // morning + weekday → same-day tip
   if(hour < 9 && day >= 1 && day <= 5){
-    allTips.push("Quick one — drop off any standard dry cleaning <strong>before 9 AM</strong> Mon–Fri and it's ready <em>same day</em>. No extra charge.");
+    allTips.push({text: "Quick one — drop off any standard dry cleaning <strong>before 9 AM</strong> Mon–Fri and it's ready <em>same day</em>. No extra charge."});
   }
   // before close
   if(status.open && (HOURS[day].close - hour) < 2 && (HOURS[day].close - hour) > 0){
-    allTips.push("We're still here for another bit — closing at <strong>" + (HOURS[day].close > 12 ? HOURS[day].close-12 : HOURS[day].close) + " PM</strong> today.");
+    allTips.push({text: "We're still here for another bit — closing at <strong>" + (HOURS[day].close > 12 ? HOURS[day].close-12 : HOURS[day].close) + " PM</strong> today."});
   }
   // closed
   if(!status.open){
-    allTips.push("We're closed right now, but feel free to <strong>leave a note below</strong> — we'll reply first thing.");
+    allTips.push({text: "We're closed right now, but feel free to <strong>leave a note below</strong> — we'll reply first thing."});
   }
   // saturday → bridal nudge
   if(day === 6){
-    allTips.push("Saturdays are for <em>bridal consultations</em>. We're 9–3 today, and we love walk-ins for fittings.");
+    allTips.push({text: "Saturdays are for <em>bridal consultations</em>. We're 9–3 today, and we love walk-ins for fittings."});
   }
   // friday afternoon → wedding tip
   if(day === 5 && hour >= 14){
-    allTips.push("Big wedding weekend? Drop your tux off Friday afternoon and we'll have it pressed for the rehearsal.");
+    allTips.push({text: "Big wedding weekend? Drop your tux off Friday afternoon and we'll have it pressed for the rehearsal."});
   }
 
   // evergreen tips — always available
@@ -1543,11 +1670,17 @@ function getChatMessages(){
 
   // shuffle evergreen, pick 2
   evergreen.sort(function(){return Math.random() - 0.5;});
-  allTips = allTips.concat(evergreen.slice(0, 2));
+  allTips = allTips.concat(evergreen.slice(0, 2).map(function(t){return {text: t};}));
 
   // de-dupe and limit to 3
   allTips = allTips.slice(0, 3);
   messages = messages.concat(allTips);
+
+  // ALWAYS pin a "prefer not to call?" form nudge as the last message
+  messages.push({
+    text: "Don't feel like calling? <strong>Just fill out the form</strong> and we'll get back to you within one business day — by phone, text, or email, your choice.",
+    action: {label: "Fill out the form →", target: "#contact"}
+  });
 
   return messages;
 }
@@ -1572,20 +1705,31 @@ function getChatMessages(){
     body.scrollTop = body.scrollHeight;
     return t;
   }
-  function appendMessage(html){
+  function appendMessage(msg){
     var m = document.createElement('div');
     m.className = 'chat-msg';
-    m.innerHTML = html;
+    m.innerHTML = msg.text;
     body.appendChild(m);
+    if(msg.action){
+      var btn = document.createElement('a');
+      btn.className = 'chat-msg-action';
+      btn.href = msg.action.target;
+      btn.innerHTML = msg.action.label;
+      btn.addEventListener('click', function(){
+        // close chat smoothly and let the anchor scroll
+        setTimeout(function(){chat.classList.remove('open');}, 200);
+      });
+      body.appendChild(btn);
+    }
     body.scrollTop = body.scrollHeight;
   }
 
   function streamNext(){
     if(rendered >= messages.length) return;
     var typing = appendTyping();
-    // typing duration scales with message length
     var msg = messages[rendered];
-    var dur = Math.min(1800, 600 + msg.length * 12);
+    // typing duration scales with message length
+    var dur = Math.min(1800, 600 + msg.text.length * 12);
     setTimeout(function(){
       typing.remove();
       appendMessage(msg);
@@ -1614,6 +1758,12 @@ function getChatMessages(){
   });
   closeBtn.addEventListener('click', closeChat);
 
+  // close chat when the footer form CTA is clicked (lets the anchor scroll work without obstruction)
+  var footerFormCta = document.getElementById('chatFormCta');
+  if(footerFormCta) footerFormCta.addEventListener('click', function(){
+    setTimeout(function(){chat.classList.remove('open');}, 200);
+  });
+
   // gentle auto-prompt: after 12 seconds, pulse the badge if not opened
   setTimeout(function(){
     if(!hasOpened){
@@ -1622,6 +1772,130 @@ function getChatMessages(){
     }
   }, 12000);
 })();
+
+// ═══════════════════════════════════════════════════════════════════════
+// VISUAL EFFECTS — progress, parallax, word reveals, magnetic buttons, ripples
+// ═══════════════════════════════════════════════════════════════════════
+
+// ─── SCROLL PROGRESS BAR ───
+var progressBar = document.getElementById('progress');
+function updateProgress(){
+  if(!progressBar) return;
+  var scrolled = window.scrollY;
+  var max = document.body.scrollHeight - window.innerHeight;
+  var pct = max > 0 ? (scrolled / max) * 100 : 0;
+  progressBar.style.width = pct + '%';
+}
+window.addEventListener('scroll', updateProgress, {passive:true});
+updateProgress();
+
+// ─── WORD-BY-WORD REVEAL ON H2s ───
+// wrap every direct text node of an h2 in spans, preserving <em> and <br>
+function splitWords(el){
+  if(el.dataset.split) return;
+  el.dataset.split = '1';
+  var html = el.innerHTML;
+  // protect <br> and <em>...</em> from word splitting
+  html = html.replace(/<br\s*\/?>/g, '|BR|');
+  // split em segments out so we can keep them together
+  var parts = html.split(/(<em>.*?<\/em>)/g);
+  var rebuilt = parts.map(function(part){
+    if(part.startsWith('<em>')){
+      // wrap whole em as one word (so the italic word stays together)
+      return '<span class="word">' + part + '</span> ';
+    }
+    return part.replace(/(\S+)/g, '<span class="word">$1</span>');
+  }).join('');
+  rebuilt = rebuilt.replace(/\|BR\|/g, '<br>');
+  el.innerHTML = rebuilt;
+}
+document.querySelectorAll('.h2, .h.h2').forEach(splitWords);
+
+// reveal H2s when in view
+var h2Obs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      e.target.classList.add('revealed');
+      h2Obs.unobserve(e.target);
+    }
+  });
+}, {threshold:.15, rootMargin:'0px 0px -10% 0px'});
+document.querySelectorAll('.h2').forEach(function(el){h2Obs.observe(el);});
+
+// ─── SECTION INDICATOR + DRAW LINE REVEALS ───
+var sectionObs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      var num = e.target.querySelector('.section-num');
+      var line = e.target.querySelector('.draw-line');
+      if(num) num.classList.add('visible');
+      if(line) setTimeout(function(){line.classList.add('drawn');}, 100);
+      sectionObs.unobserve(e.target);
+    }
+  });
+}, {threshold:.12, rootMargin:'0px 0px -10% 0px'});
+document.querySelectorAll('section').forEach(function(el){sectionObs.observe(el);});
+
+// ─── PARALLAX SCROLL ───
+var parallaxEls = document.querySelectorAll('.parallax-y');
+function applyParallax(){
+  parallaxEls.forEach(function(el){
+    var speed = parseFloat(el.dataset.parallaxSpeed) || 0.3;
+    var rect = el.getBoundingClientRect();
+    // only apply while element is near viewport
+    if(rect.bottom < -200 || rect.top > window.innerHeight + 200) return;
+    var offset = window.scrollY * speed * 0.3;
+    el.style.transform = 'translate3d(0,' + (offset * -1) + 'px,0)';
+  });
+}
+// throttle parallax via rAF
+var parallaxTicking = false;
+window.addEventListener('scroll', function(){
+  if(!parallaxTicking){
+    window.requestAnimationFrame(function(){
+      applyParallax();
+      parallaxTicking = false;
+    });
+    parallaxTicking = true;
+  }
+}, {passive:true});
+
+// ─── MAGNETIC BUTTONS ───
+var magneticSelector = '.btn-primary, .btn-secondary, .btn-gold, .nav-call, .form-submit, .cta-call-alt';
+function isCoarsePointer(){
+  return window.matchMedia('(pointer: coarse)').matches;
+}
+if(!isCoarsePointer()){
+  document.querySelectorAll(magneticSelector).forEach(function(btn){
+    btn.addEventListener('mousemove', function(e){
+      var r = btn.getBoundingClientRect();
+      var cx = r.left + r.width / 2;
+      var cy = r.top + r.height / 2;
+      var dx = (e.clientX - cx) * 0.18;
+      var dy = (e.clientY - cy) * 0.18;
+      btn.style.transform = 'translate(' + dx + 'px,' + dy + 'px)';
+    });
+    btn.addEventListener('mouseleave', function(){
+      btn.style.transform = '';
+    });
+  });
+}
+
+// ─── TAP / CLICK RIPPLE ───
+var rippleSelector = '.btn-primary, .btn-secondary, .btn-gold, .form-submit, .nav-call, .cta-call-alt, .chat-cta, .btn-tap';
+document.querySelectorAll(rippleSelector).forEach(function(el){
+  el.addEventListener('click', function(e){
+    var r = el.getBoundingClientRect();
+    var size = Math.max(r.width, r.height) * 2;
+    var x = (e.clientX || (r.left + r.width/2)) - r.left - size/2;
+    var y = (e.clientY || (r.top + r.height/2)) - r.top - size/2;
+    var ripple = document.createElement('span');
+    ripple.className = 'ripple';
+    ripple.style.cssText = 'width:' + size + 'px;height:' + size + 'px;left:' + x + 'px;top:' + y + 'px;';
+    el.appendChild(ripple);
+    setTimeout(function(){ripple.remove();}, 700);
+  });
+});
 
 // ─── KICK OFF ───
 applyGreeting();
