@@ -88,9 +88,8 @@
         {"@type": "City", "name": "North Dallas"}
       ],
       "openingHoursSpecification": [
-        {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Thursday"], "opens": "07:00", "closes": "18:00"},
-        {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Wednesday", "Friday"], "opens": "07:00", "closes": "17:00"},
-        {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "15:00"}
+        {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "07:00", "closes": "18:00"},
+        {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "17:00"}
       ],
       "aggregateRating": {
         "@type": "AggregateRating",
@@ -141,7 +140,7 @@
         {"@type": "Question", "name": "Do you offer wash and fold laundry service in Addison?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Metrocrest offers professional wash & fold laundry for households and businesses across Addison, Dallas, Plano, Carrollton, and the DFW Metroplex. Wash, dry, and neatly fold — typically returned within 24 to 48 hours."}},
         {"@type": "Question", "name": "Do you clean Persian and Oriental rugs?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. We specialize in hand-washed cleaning for fine rugs including Persian, Oriental, hand-knotted, antique, and modern pieces. Pickup and delivery across Addison and the greater Dallas area."}},
         {"@type": "Question", "name": "Can you clean leather jackets, suede, and fur?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Our leather specialists handle cleaning and restoration for leather jackets, suede garments, shearling coats, and fur. Services include color refresh, stain treatment, conditioning, and reshaping."}},
-        {"@type": "Question", "name": "What are Metrocrest's hours in Addison, TX?", "acceptedAnswer": {"@type": "Answer", "text": "Monday, Tuesday, and Thursday: 7:00 AM to 6:00 PM. Wednesday and Friday: 7:00 AM to 5:00 PM. Saturday: 9:00 AM to 3:00 PM. Closed Sundays. Bridal consultations available by appointment outside standard hours."}},
+        {"@type": "Question", "name": "What are Metrocrest's hours in Addison, TX?", "acceptedAnswer": {"@type": "Answer", "text": "Monday through Friday: 7:00 AM to 6:00 PM. Saturday: 8:00 AM to 5:00 PM. Closed Sundays. Bridal consultations available by appointment outside standard hours."}},
         {"@type": "Question", "name": "Where is Metrocrest located?", "acceptedAnswer": {"@type": "Answer", "text": "Metrocrest is located at 3709 Spring Valley Rd, Addison, TX 75001 — minutes from Dallas, Plano, Carrollton, Richardson, and Farmers Branch. Call (972) 243-1982."}}
       ]
     }
@@ -295,6 +294,37 @@ section{padding:120px 32px;position:relative}
 .hero-meta-num em{font-style:italic;color:var(--gold)}
 .hero-meta-lbl{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-3);font-weight:500}
 
+/* ───── HERO AWARD BADGE (subtle) ───── */
+.hero-award{display:inline-flex;align-items:center;gap:11px;margin-bottom:44px;padding:9px 18px 9px 14px;background:rgba(184,137,60,0.07);border:1px solid rgba(184,137,60,0.22);border-radius:100px;opacity:0;animation:fadeUp .8s 1.2s forwards}
+.hero-award-laurel{color:var(--gold);font-size:18px;line-height:1}
+.hero-award-txt{font-size:12px;color:var(--ink-2);letter-spacing:0.2px;line-height:1.4}
+.hero-award-txt strong{color:var(--navy);font-weight:600}
+.hero-award-src{color:var(--ink-3)}
+@media(max-width:560px){.hero-award-src{display:none}}
+
+/* ───── EVERYDAY SERVICES ICON GRID (Martinizing-style) ───── */
+.iconrow{background:var(--paper);padding:96px 32px;border-bottom:1px solid var(--line-2)}
+.iconrow-head{text-align:center;max-width:680px;margin:0 auto 56px}
+.iconrow-head .lede{margin:16px auto 0}
+.iconrow-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;max-width:var(--max);margin:0 auto}
+.iconcard{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;padding:30px 16px;border:1px solid var(--line-2);border-radius:10px;background:var(--bg);transition:all .25s;text-decoration:none}
+.iconcard:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 16px 38px -14px rgba(15,34,56,0.16);background:#fff}
+.iconcard-ic{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(184,137,60,0.1);border:1px solid rgba(184,137,60,0.22);transition:all .25s;color:var(--gold)}
+.iconcard-ic svg{width:26px;height:26px;display:block}
+.iconcard:hover .iconcard-ic{background:var(--navy);border-color:var(--navy);color:var(--gold-2)}
+.iconcard-t{font-family:var(--font-d);font-weight:500;font-size:16px;color:var(--navy);letter-spacing:-0.2px;line-height:1.25}
+
+/* ───── VALUE TRIO: Consistent / Convenient / Clean ───── */
+.valtrio{background:var(--cream);padding:110px 32px}
+.valtrio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;max-width:var(--max);margin:0 auto}
+.valcard{text-align:center}
+.valcard-ic{width:72px;height:72px;margin:0 auto 22px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--paper);border:1px solid var(--line);box-shadow:0 10px 30px -14px rgba(15,34,56,0.2);color:var(--gold)}
+.valcard-ic svg{width:32px;height:32px;display:block}
+.valcard-t{font-family:var(--font-d);font-weight:500;font-size:27px;color:var(--navy);letter-spacing:-0.4px;margin-bottom:10px}
+.valcard-t em{font-style:italic;color:var(--gold)}
+.valcard-d{font-size:15px;line-height:1.65;color:var(--ink-2);max-width:300px;margin:0 auto}
+@media(max-width:900px){.iconrow-grid{grid-template-columns:repeat(2,1fr)}.valtrio-grid{grid-template-columns:1fr;gap:48px}}
+
 /* ───── MARQUEE ───── */
 .marq{background:var(--navy);padding:18px 0;overflow:hidden;border-top:1px solid rgba(184,137,60,0.18);border-bottom:1px solid rgba(184,137,60,0.18)}
 .marq-track{display:flex;white-space:nowrap;animation:marq 55s linear infinite;gap:0}
@@ -384,13 +414,18 @@ section{padding:120px 32px;position:relative}
 .reviews{background:var(--paper);padding:140px 32px;border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2)}
 .reviews-head{text-align:center;margin-bottom:64px}
 .stars{color:var(--gold);font-size:14px;letter-spacing:2px;margin-bottom:14px}
-.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:var(--max);margin:0 auto}
-.rev{padding:36px 32px;border:1px solid var(--line-2);border-radius:6px;background:var(--bg);transition:all .25s;display:flex;flex-direction:column}
+.rev-grid{display:flex;gap:24px;max-width:none;margin:0;padding:4px 32px 24px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.rev-grid::-webkit-scrollbar{display:none}
+.rev{flex:0 0 360px;max-width:360px;scroll-snap-align:start;padding:36px 32px;border:1px solid var(--line-2);border-radius:6px;background:var(--bg);transition:all .25s;display:flex;flex-direction:column}
 .rev:hover{border-color:var(--line);transform:translateY(-3px);box-shadow:0 14px 36px -10px rgba(15,34,56,0.1)}
 .rev-stars{color:var(--gold);font-size:12px;letter-spacing:2px;margin-bottom:18px}
 .rev-q{font-family:var(--font-d);font-style:italic;font-weight:400;font-size:18px;line-height:1.55;color:var(--navy);margin-bottom:24px;letter-spacing:-0.2px;flex:1}
 .rev-author{font-size:13px;font-weight:600;color:var(--navy)}
 .rev-meta{font-size:11.5px;color:var(--ink-3);margin-top:3px;letter-spacing:0.2px}
+.rev-nav{display:flex;justify-content:center;gap:12px;margin-top:36px}
+.rev-arrow{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--navy);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s}
+.rev-arrow:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+@media(max-width:560px){.rev{flex:0 0 84vw;max-width:84vw}}
 
 /* ───── HOURS ───── */
 .hours{background:var(--cream);padding:120px 32px}
@@ -404,7 +439,8 @@ section{padding:120px 32px;position:relative}
 .hr-closed{color:var(--ink-3)}
 .hours-info{display:grid;gap:12px}
 .hi{background:var(--paper);border:1px solid var(--line-2);border-radius:8px;padding:24px;display:grid;grid-template-columns:48px 1fr;gap:18px;align-items:start}
-.hi-ic{width:42px;height:42px;border-radius:8px;background:var(--gold-soft);display:grid;place-items:center;font-size:18px}
+.hi-ic{width:42px;height:42px;border-radius:8px;background:var(--gold-soft);display:grid;place-items:center;color:var(--navy)}
+.hi-ic svg{width:20px;height:20px;display:block}
 .hi-t{font-family:var(--font-d);font-weight:500;font-size:17px;color:var(--navy);letter-spacing:-0.2px;margin-bottom:4px}
 .hi-d{font-size:13px;color:var(--ink-2);line-height:1.55}
 
@@ -645,7 +681,7 @@ footer{background:var(--navy);color:rgba(255,255,255,0.7);padding:80px 32px 36px
   .bridal-feat{border-bottom:1px solid rgba(255,255,255,0.08)!important}
   .bridal-feat:last-child{border-bottom:none!important}
   .events-grid{grid-template-columns:1fr 1fr}
-  .rev-grid{grid-template-columns:1fr}
+  .rev-grid{padding-left:20px;padding-right:20px}
   .areas-grid{grid-template-columns:1fr 1fr}
   .foot-grid{grid-template-columns:1fr 1fr}
   .everyday-list{grid-template-columns:1fr}
@@ -711,7 +747,7 @@ footer{background:var(--navy);color:rgba(255,255,255,0.7);padding:80px 32px 36px
     <a href="#everyday" onclick="toggleMenu()">Dry Cleaning</a>
     <a href="#faq" onclick="toggleMenu()">FAQ</a>
     <a href="#contact" onclick="toggleMenu()">Visit</a>
-    <a href="tel:9722431982" style="color:var(--gold);">📞 (972) 243-1982</a>
+    <a href="tel:9722431982" style="color:var(--gold);">Call (972) 243-1982</a>
   </div>
 </header>
 
@@ -734,10 +770,14 @@ footer{background:var(--navy);color:rgba(255,255,255,0.7);padding:80px 32px 36px
       <p class="hero-byline">The bridal house behind every <span class="emoji-mark">✦</span> One family, 25+ years, every detail.</p>
       <p class="hero-lede" id="heroLede">Since 1999, Metrocrest has been Addison's trusted home for <strong>wedding dress cleaning, bridal alterations, and gown preservation</strong> — alongside event linen cleaning, same-day dry cleaning, and everyday laundry. One family. Two craftsmen's hands. Every detail.</p>
       <div class="hero-cta">
-        <a href="tel:9722431982" class="btn-primary" id="heroPrimaryCta">Call (972) 243-1982</a>
-        <a href="#contact" class="btn-secondary" id="heroSecondaryCta">Book Bridal Consultation</a>
+        <a href="#contact" class="btn-primary" id="heroPrimaryCta">Schedule a Pickup</a>
+        <a href="tel:9722431982" class="btn-secondary" id="heroSecondaryCta">Call (972) 243-1982</a>
       </div>
       <a href="#contact" class="hero-no-call">Prefer not to call? <strong>Send a message instead →</strong></a>
+      <div class="hero-award" aria-label="Best of 2026 Award Winner, BusinessRate, powered by Google Reviews">
+        <span class="hero-award-laurel" aria-hidden="true">❧</span>
+        <span class="hero-award-txt"><strong>Best of 2026</strong> · Dry Cleaner Award Winner <span class="hero-award-src">— BusinessRate, powered by Google Reviews</span></span>
+      </div>
       <div class="hero-meta">
         <div class="hero-meta-item">
           <div class="hero-meta-num"><span class="count" data-target="25">0</span><em>+</em></div>
@@ -790,6 +830,48 @@ footer{background:var(--navy);color:rgba(255,255,255,0.7);padding:80px 32px 36px
     <span class="marq-item">Addison, TX</span><span class="marq-sep">✦</span>
   </div>
 </div>
+
+<!-- EVERYDAY SERVICES ICON GRID -->
+<section class="iconrow" id="services-icons">
+  <div class="iconrow-head reveal">
+    <span class="eyebrow">Everyday Services</span>
+    <h2 class="h h2">Designed for <em>everyday</em> needs.</h2>
+    <p class="lede">Everything your closet needs, under one roof in Addison — tap any service to learn more.</p>
+  </div>
+  <div class="iconrow-grid reveal">
+    <a href="#everyday" class="iconcard"><span class="iconcard-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3l3 2 3-2 4 3-2 3-1-.5V21H8V8.5L7 9 5 6z"/></svg></span><span class="iconcard-t">Dry Cleaning</span></a>
+    <a href="#everyday" class="iconcard"><span class="iconcard-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h16v11a2 2 0 01-2 2H6a2 2 0 01-2-2z"/><path d="M4 8l2.5-4h11L20 8"/><path d="M8 12h8"/></svg></span><span class="iconcard-t">Wash, Dry &amp; Fold</span></a>
+    <a href="#everyday" class="iconcard"><span class="iconcard-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13l2-5a2 2 0 012-1.5h10A2 2 0 0119 8l2 5v5h-3v-2H6v2H3z"/><circle cx="7" cy="16" r="1.2"/><circle cx="17" cy="16" r="1.2"/></svg></span><span class="iconcard-t">Drive-Thru</span></a>
+    <a href="#everyday" class="iconcard"><span class="iconcard-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><path d="M8 7.5L20 18M8 16.5L20 6"/></svg></span><span class="iconcard-t">Alterations &amp; Repairs</span></a>
+    <a href="#bridal" class="iconcard"><span class="iconcard-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c1.5 2 1.5 4 0 6-1.5-2-1.5-4 0-6z"/><path d="M12 9c2 3 5 6 5 9a5 5 0 01-10 0c0-3 3-6 5-9z"/></svg></span><span class="iconcard-t">Gown Preservation</span></a>
+    <a href="#everyday" class="iconcard"><span class="iconcard-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4l4 2 4-2 4 3-2.5 3L16 9v11H8V9l-1.5 1L4 7z"/></svg></span><span class="iconcard-t">Shirt Laundry</span></a>
+    <a href="#everyday" class="iconcard"><span class="iconcard-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10V7a2 2 0 012-2h14a2 2 0 012 2v3"/><path d="M3 10h18v6H3z"/><path d="M3 16v3M21 16v3"/><path d="M7 10V8h10v2"/></svg></span><span class="iconcard-t">Comforters &amp; Household</span></a>
+    <a href="#everyday" class="iconcard"><span class="iconcard-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4l4 3 4-3 4 3v4l-2.5 1V21H6.5V12L4 11V7z"/></svg></span><span class="iconcard-t">Leather &amp; Suede</span></a>
+    <a href="#everyday" class="iconcard"><span class="iconcard-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v12H4z"/><path d="M4 6l2 12M20 6l-2 12"/><path d="M7 6v12M17 6v12"/></svg></span><span class="iconcard-t">Rug Cleaning</span></a>
+    <a href="#everyday" class="iconcard"><span class="iconcard-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-2 8 9-12h-7z"/></svg></span><span class="iconcard-t">Same-Day Service</span></a>
+  </div>
+</section>
+
+<!-- VALUE TRIO -->
+<section class="valtrio">
+  <div class="valtrio-grid reveal">
+    <div class="valcard">
+      <div class="valcard-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></svg></div>
+      <div class="valcard-t"><em>Consistent</em></div>
+      <div class="valcard-d">Getting it right every time, so you can focus on what matters. Same hands, same care, since 1999.</div>
+    </div>
+    <div class="valcard">
+      <div class="valcard-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h11v9H2z"/><path d="M13 10h4l3 3v3h-7z"/><circle cx="6" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg></div>
+      <div class="valcard-t"><em>Convenient</em></div>
+      <div class="valcard-d">Drive-thru, same-day service, and pickup &amp; delivery across the DFW Metroplex — fast and easy, whether you visit or we come to you.</div>
+    </div>
+    <div class="valcard">
+      <div class="valcard-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8z"/><path d="M18 15l.8 2.2L21 18l-2.2.8L18 21l-.8-2.2L15 18l2.2-.8z"/></svg></div>
+      <div class="valcard-t"><em>Clean</em></div>
+      <div class="valcard-d">There's clean, then there's Metrocrest clean. Every garment hand-finished and inspected before it leaves the shop.</div>
+    </div>
+  </div>
+</section>
 
 <!-- SERVICES OVERVIEW -->
 <section class="services" id="services">
@@ -1058,7 +1140,7 @@ footer{background:var(--navy);color:rgba(255,255,255,0.7);padding:80px 32px 36px
       <span class="eyebrow" style="margin-bottom:14px;display:block">Brides &amp; Neighbors</span>
       <h2 class="h h2">Addison's most <em>trusted.</em></h2>
     </div>
-    <div class="rev-grid reveal">
+    <div class="rev-grid reveal" id="revGrid">
       <div class="rev">
         <div class="rev-stars">★ ★ ★ ★ ★</div>
         <div class="rev-q">"They cleaned my wedding dress and it looked absolutely perfect. So careful and so professional — they treated it like their own."</div>
@@ -1077,6 +1159,28 @@ footer{background:var(--navy);color:rgba(255,255,255,0.7);padding:80px 32px 36px
         <div class="rev-author">David K.</div>
         <div class="rev-meta">Commercial account</div>
       </div>
+      <div class="rev">
+        <div class="rev-stars">★ ★ ★ ★ ★</div>
+        <div class="rev-q">"Needed a suit jacket cleaned same-day. Dropped it off in the morning and it was ready by the afternoon, looking beautiful. Quickest turnaround in the area."</div>
+        <div class="rev-author">Mark G.</div>
+        <div class="rev-meta">Same-day service</div>
+      </div>
+      <div class="rev">
+        <div class="rev-stars">★ ★ ★ ★ ★</div>
+        <div class="rev-q">"My alterations and cleaning came out beautifully. Very organized, efficient, and great hours for my schedule. I won't go anywhere else."</div>
+        <div class="rev-author">Krista R.</div>
+        <div class="rev-meta">Alterations</div>
+      </div>
+      <div class="rev">
+        <div class="rev-stars">★ ★ ★ ★ ★</div>
+        <div class="rev-q">"They worked magic on my old suede jacket — it looks like new. So friendly too. I'm definitely impressed with the customer service."</div>
+        <div class="rev-author">Bowman M.</div>
+        <div class="rev-meta">Leather &amp; suede</div>
+      </div>
+    </div>
+    <div class="rev-nav reveal">
+      <button class="rev-arrow" id="revPrev" aria-label="Previous reviews">‹</button>
+      <button class="rev-arrow" id="revNext" aria-label="Next reviews">›</button>
     </div>
   </div>
 </section>
@@ -1095,22 +1199,22 @@ footer{background:var(--navy);color:rgba(255,255,255,0.7);padding:80px 32px 36px
       <div style="margin-bottom:16px">
         <div class="hr-row" id="hr-mon"><div class="hr-day">Monday</div><div class="hr-time">7:00 AM – 6:00 PM</div></div>
         <div class="hr-row" id="hr-tue"><div class="hr-day">Tuesday</div><div class="hr-time">7:00 AM – 6:00 PM</div></div>
-        <div class="hr-row" id="hr-wed"><div class="hr-day">Wednesday</div><div class="hr-time">7:00 AM – 5:00 PM</div></div>
+        <div class="hr-row" id="hr-wed"><div class="hr-day">Wednesday</div><div class="hr-time">7:00 AM – 6:00 PM</div></div>
         <div class="hr-row" id="hr-thu"><div class="hr-day">Thursday</div><div class="hr-time">7:00 AM – 6:00 PM</div></div>
-        <div class="hr-row" id="hr-fri"><div class="hr-day">Friday</div><div class="hr-time">7:00 AM – 5:00 PM</div></div>
-        <div class="hr-row" id="hr-sat"><div class="hr-day">Saturday</div><div class="hr-time">9:00 AM – 3:00 PM</div></div>
+        <div class="hr-row" id="hr-fri"><div class="hr-day">Friday</div><div class="hr-time">7:00 AM – 6:00 PM</div></div>
+        <div class="hr-row" id="hr-sat"><div class="hr-day">Saturday</div><div class="hr-time">8:00 AM – 5:00 PM</div></div>
         <div class="hr-row" id="hr-sun"><div class="hr-day">Sunday</div><div class="hr-time hr-closed">Closed</div></div>
       </div>
       <div class="hours-info">
         <div class="hi">
-          <div class="hi-ic">👰</div>
+          <div class="hi-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c1.5 2 1.5 4 0 6-1.5-2-1.5-4 0-6z"/><path d="M12 9c2 3 5 6 5 9a5 5 0 01-10 0c0-3 3-6 5-9z"/></svg></div>
           <div>
             <div class="hi-t">Bridal Consultations</div>
             <div class="hi-d">By appointment, available outside standard hours. Allow 60–90 minutes.</div>
           </div>
         </div>
         <div class="hi">
-          <div class="hi-ic">🚗</div>
+          <div class="hi-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13l2-5a2 2 0 012-1.5h10A2 2 0 0119 8l2 5v5h-3v-2H6v2H3z"/><circle cx="7" cy="16" r="1.2"/><circle cx="17" cy="16" r="1.2"/></svg></div>
           <div>
             <div class="hi-t">Drive-Thru Open All Day</div>
             <div class="hi-d">Available during all standard business hours. No need to leave the car.</div>
@@ -1148,6 +1252,17 @@ footer{background:var(--navy);color:rgba(255,255,255,0.7);padding:80px 32px 36px
     </div>
     <div class="contact-grid">
       <form class="form reveal" id="contactForm" onsubmit="submitForm(event)">
+        <!-- ════════════════════════════════════════════════════════════
+             FORM DELIVERY (Web3Forms → metrocrestdrycleaner@gmail.com)
+             ACTION REQUIRED: replace REPLACE_WITH_YOUR_ACCESS_KEY below
+             with the free access key emailed to you from web3forms.com.
+             Until then, submissions will NOT be delivered.
+             ════════════════════════════════════════════════════════════ -->
+        <input type="hidden" name="access_key" value="REPLACE_WITH_YOUR_ACCESS_KEY">
+        <input type="hidden" name="subject" value="New Website Inquiry — Metrocrest Cleaners">
+        <input type="hidden" name="from_name" value="Metrocrest Website">
+        <!-- honeypot spam filter (hidden from real users) -->
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
         <div class="form-stripe"></div>
         <div class="form-header">
           <div class="form-badge">No call needed</div>
@@ -1304,7 +1419,7 @@ footer{background:var(--navy);color:rgba(255,255,255,0.7);padding:80px 32px 36px
       </details>
       <details class="faq-item">
         <summary><span class="faq-q">What are Metrocrest's hours in Addison, TX?</span><span class="faq-ic">+</span></summary>
-        <div class="faq-a">Monday, Tuesday, and Thursday: 7:00 AM to 6:00 PM. Wednesday and Friday: 7:00 AM to 5:00 PM. Saturday: 9:00 AM to 3:00 PM. Closed Sundays. Bridal consultations available by appointment outside standard hours.</div>
+        <div class="faq-a">Monday through Friday: 7:00 AM to 6:00 PM. Saturday: 8:00 AM to 5:00 PM. Closed Sundays. Bridal consultations available by appointment outside standard hours.</div>
       </details>
       <details class="faq-item">
         <summary><span class="faq-q">Where is Metrocrest located?</span><span class="faq-ic">+</span></summary>
@@ -1415,8 +1530,8 @@ footer{background:var(--navy);color:rgba(255,255,255,0.7);padding:80px 32px 36px
       <!-- messages injected by JS -->
     </div>
     <div class="chat-foot">
-      <a href="tel:9722431982" class="chat-cta">📞 Call</a>
-      <a href="#contact" class="chat-cta secondary" id="chatFormCta">✉️ Send Message</a>
+      <a href="tel:9722431982" class="chat-cta"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><path d="M5 4h3l2 5-2 1.5a11 11 0 005.5 5.5L19 18l-1.5-2 5 2v3a1 1 0 01-1 1A16 16 0 014 6a1 1 0 011-1z"/></svg>Call</a>
+      <a href="#contact" class="chat-cta secondary" id="chatFormCta"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/></svg>Send Message</a>
     </div>
   </div>
 </div>
@@ -1444,10 +1559,10 @@ var HOURS = {
   0: null,                 // Sun closed
   1: {open: 7,  close: 18}, // Mon
   2: {open: 7,  close: 18}, // Tue
-  3: {open: 7,  close: 17}, // Wed
+  3: {open: 7,  close: 18}, // Wed
   4: {open: 7,  close: 18}, // Thu
-  5: {open: 7,  close: 17}, // Fri
-  6: {open: 9,  close: 15}  // Sat
+  5: {open: 7,  close: 18}, // Fri
+  6: {open: 8,  close: 17}  // Sat
 };
 var DAY_NAMES = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 
@@ -1585,7 +1700,7 @@ var countObs = new IntersectionObserver(function(entries){
 document.querySelectorAll('.count').forEach(function(el){countObs.observe(el);});
 
 // ─── CURSOR SPOTLIGHT ON CARDS ───
-document.querySelectorAll('.svc, .ev, .area, .ed').forEach(function(card){
+document.querySelectorAll('.svc, .ev, .area, .ed, .iconcard').forEach(function(card){
   card.addEventListener('mousemove', function(e){
     var r = card.getBoundingClientRect();
     card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
@@ -1624,15 +1739,54 @@ var revealObs = new IntersectionObserver(function(entries){
 }, {threshold: .08, rootMargin: '0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(function(el){revealObs.observe(el);});
 
-// ─── FORM ───
+// ─── FORM (delivers to metrocrestdrycleaner@gmail.com via Web3Forms) ───
 function submitForm(e){
   e.preventDefault();
-  document.getElementById('formSuccess').classList.add('show');
   var form = document.getElementById('contactForm');
-  var btn = form.querySelector('button');
+  var btn = form.querySelector('button[type="submit"]');
   var trust = form.querySelector('.form-trust');
-  if(btn) btn.style.display = 'none';
-  if(trust) trust.style.display = 'none';
+  var success = document.getElementById('formSuccess');
+
+  // build a friendly subject + sender name from what they typed
+  var first = (form.firstName && form.firstName.value || '').trim();
+  var service = (form.service && form.service.value || '').trim();
+  if(form.subject){
+    form.subject.value = 'New Website Inquiry'
+      + (service ? ' — ' + service : '')
+      + (first ? ' (' + first + ')' : '');
+  }
+
+  var originalBtnText = btn ? btn.textContent : '';
+  if(btn){ btn.disabled = true; btn.textContent = 'Sending…'; }
+
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Accept': 'application/json' },
+    body: new FormData(form)
+  })
+  .then(function(res){ return res.json(); })
+  .then(function(data){
+    if(data && data.success){
+      success.classList.add('show');
+      if(btn) btn.style.display = 'none';
+      if(trust) trust.style.display = 'none';
+    } else {
+      showFormError(btn, originalBtnText);
+    }
+  })
+  .catch(function(){
+    showFormError(btn, originalBtnText);
+  });
+}
+
+function showFormError(btn, originalText){
+  if(btn){ btn.disabled = false; btn.textContent = originalText; }
+  var success = document.getElementById('formSuccess');
+  success.classList.add('show');
+  success.querySelector('.form-success-t').textContent = "Couldn't send just now";
+  success.querySelector('.form-success-d').innerHTML =
+    "Please call us at <a href='tel:9722431982' style='color:var(--gold);font-weight:600'>(972) 243-1982</a> or email "
+    + "<a href='mailto:metrocrestdrycleaner@gmail.com' style='color:var(--gold);font-weight:600'>metrocrestdrycleaner@gmail.com</a> and we'll take care of you.";
 }
 
 // ═══════════════════════════════════════════════════════════════════════
@@ -1667,7 +1821,7 @@ function getChatMessages(){
   }
   // saturday → bridal nudge
   if(day === 6){
-    allTips.push({text: "Saturdays are for <em>bridal consultations</em>. We're 9–3 today, and we love walk-ins for fittings."});
+    allTips.push({text: "Saturdays are for <em>bridal consultations</em>. We're 8–5 today, and we love walk-ins for fittings."});
   }
   // friday afternoon → wedding tip
   if(day === 5 && hour >= 14){
@@ -1912,6 +2066,17 @@ document.querySelectorAll(rippleSelector).forEach(function(el){
     setTimeout(function(){ripple.remove();}, 700);
   });
 });
+
+// ─── REVIEW CAROUSEL ───
+(function(){
+  var grid = document.getElementById('revGrid');
+  var prev = document.getElementById('revPrev');
+  var next = document.getElementById('revNext');
+  if(!grid || !prev || !next) return;
+  function step(){ var card = grid.querySelector('.rev'); return card ? card.offsetWidth + 24 : 360; }
+  next.addEventListener('click', function(){ grid.scrollBy({left: step(), behavior:'smooth'}); });
+  prev.addEventListener('click', function(){ grid.scrollBy({left: -step(), behavior:'smooth'}); });
+})();
 
 // ─── KICK OFF ───
 applyGreeting();
