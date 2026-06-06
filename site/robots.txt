@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.metrocrestcleaners.com/sitemap.xml
